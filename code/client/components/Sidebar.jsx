@@ -3,7 +3,7 @@ import { useState } from 'react'
 import SidebarOptions from './SidebarOptions'
 
 const styles = {
-    container: 'overflow-y-auto py-4 px-10 bg-gray-50 rounded dark:bg-gray-800 dark:text-gray-400',
+    container: 'overflow-y-auto py-4 px-10 bg-gray-50 rounded bg-gray-800 text-gray-400',
     title: 'text-4xl font-bold py-4 hover:underline cursor-pointer font-normal hover:font-bold',
     option: 'flex flex-col justify-center items-center py-2 hover:bg-slate-700 cursor-pointer mx-12 rounded-2xl' ,
     publish: 'text-2xl font-bold py-4 hover: cursor-pointer font-normal hover:font-bold text-center bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-2xl mx-7 mt-10',
