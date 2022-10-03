@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Sidebar from '../components/Sidebar'
-
+import Feed from '../components/home/Feed'
 const styles = {
   wrapper: 'flex justify-center items-center h-screen w-screen bg-balck text-white',
   columns: 'flex justify-between h-full w-full text-center  text-white gap-0.5',
@@ -21,7 +21,9 @@ export default function Home() {
         <div className={styles.wrapper}>
           <div className={styles.columns}>
             <h1 className={styles.sides}><Sidebar /></h1>
-            <h1 className={styles.feed}>feed</h1>
+            <h1 className={styles.feed}>
+              <Feed />
+              </h1>
             <h1 className={styles.sides}>widgets</h1>
           </div>
         </div>
