@@ -1,6 +1,7 @@
-import Head from "next/head";
-import Image from "next/image";
-import Sidebar from "../components/Sidebar";
+import Head from 'next/head'
+import Image from 'next/image'
+import Sidebar from '../components/Sidebar'
+import Feed from '../components/home/Feed'
 import Widgets from "../components/Widgets";
 
 const styles = {
@@ -27,6 +28,13 @@ export default function Home() {
               <Sidebar />
             </h1>
             <h1 className={styles.feed}>feed</h1>
+            <h1 className={styles.sides}>
+              <Widgets />
+            </h1>
+            <h1 className={styles.sides}><Sidebar /></h1>
+            <h1 className={styles.feed}>
+              <Feed />
+              </h1>
             <h1 className={styles.sides}>
               <Widgets />
             </h1>
