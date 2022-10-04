@@ -29,7 +29,7 @@ function Widgets() {
             <div className={style.searchBar}>
                 <BiSearch className={style.searchIcon} />
                 <input
-                    placeholder='Search Twitter'
+                    placeholder='Search Blog-X'
                     type='text'
                     className={style.inputBox}
                 />
