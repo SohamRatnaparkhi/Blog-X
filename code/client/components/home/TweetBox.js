@@ -7,7 +7,7 @@ import { MdOutlineLocationOn } from 'react-icons/md'
 
 
 const style = {
-  wrapper: ` border-b-2 border-b-indigo-500 flex flex-row  px-4 py-2 rounded-2xl `,
+  wrapper: ` border-b-2 border-b-indigo-500 flex flex-row  px-4 py-2 rounded-2xl p-8`,
   tweetBoxLeft: `mr-4`,
   tweetBoxRight: `flex-1`,
   profileImage: `height-12 w-12 rounded-full`,
@@ -30,7 +30,7 @@ function TweetBox() {
     }
   
   return (
-    <div class="p-8" className={style.wrapper}>
+    <div className={style.wrapper}>
       <div className={style.tweetBoxLeft}>
       <img src = "https://pbs.twimg.com/profile_images/771597667403038720/Y57U3bvY_400x400.jpg" 
             alt = "profile image" 
