@@ -14,7 +14,7 @@ const styles = {
   widgets: "basis-1/3 bg-slate-900 h-full"
 };
 
-export default function Home() {
+export default function Profile() {
   return (
     <>
       <Head>
@@ -30,7 +30,7 @@ export default function Home() {
             </div>
             <div className={styles.side2}>
               <div className={styles.feed}>
-                <Feed />
+                Profile here
               </div>
               <div className={styles.widgets}>
                 <Widgets />

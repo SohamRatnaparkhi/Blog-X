@@ -2,6 +2,7 @@ import Head from "next/head";
 import Sidebar from "../components/Sidebar";
 import Feed from "../components/home/Feed";
 import Widgets from "../components/Widgets";
+import TweetBox from "../components/home/TweetBox";
 
 const styles = {
   wrapper:
@@ -14,7 +15,7 @@ const styles = {
   widgets: "basis-1/3 bg-slate-900 h-full"
 };
 
-export default function Home() {
+export default function BlogPage() {
   return (
     <>
       <Head>
@@ -30,7 +31,7 @@ export default function Home() {
             </div>
             <div className={styles.side2}>
               <div className={styles.feed}>
-                <Feed />
+                <TweetBox/>
               </div>
               <div className={styles.widgets}>
                 <Widgets />
