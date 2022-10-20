@@ -6,9 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "style:all": "npm run style:lint && npm run style:prettier",
+    "style:lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "style:prettier": "prettier --check . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx",
+    "style:prettier:fix": "prettier --write . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "husky": "^8.0.1",
     "next": "^12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -21,6 +27,7 @@
     "eslint": "8.23.1",
     "eslint-config-next": "12.3.1",
     "postcss": "^8.4.16",
+    "prettier": "2.7.1",
     "tailwindcss": "^3.1.8"
   }
 }
