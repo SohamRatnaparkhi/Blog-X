@@ -5201,7 +5201,7 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
-"react-moralis@^1.4.0":
+"react-moralis@^1.4.0", "react-moralis@^1.4.2":
   "integrity" "sha512-M6R9+AO4r/ZmJEMbv2IySnp1+8fRvzu1osehAWYqQgN8cPsHWGuDpnmNSd8Q+DegZ/sjiBkfWjuEXFRwrHYorQ=="
   "resolved" "https://registry.npmjs.org/react-moralis/-/react-moralis-1.4.2.tgz"
   "version" "1.4.2"
