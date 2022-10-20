@@ -2,7 +2,8 @@ import Head from "next/head";
 import Sidebar from "../components/Sidebar";
 import Feed from "../components/home/Feed";
 import Widgets from "../components/Widgets";
-
+import {defaultImgs} from "../components/home/defaultImgs";
+import Blogs from "../components/home/Blogs";
 const styles = {
   wrapper:
     "flex justify-center items-center h-screen w-screen bg-black text-white overflow-x-hidden",
@@ -11,7 +12,17 @@ const styles = {
   sides: "basis-1/4 bg-slate-900 h-full",
   side2: "basis-3/4 bg-slate-900 h-full flex flex-row overflow-x-hidden overflow-y-auto ",
   feed: "basis-2/3 bg-slate-800 h-full",
-  widgets: "basis-1/3 bg-slate-900 h-full"
+  widgets: "basis-1/3 bg-slate-900 h-full",
+  profileBanner: "w-full  h-220px bg-slate-900",
+  pfpContainer: "w-full  h-1/3 bg-slate-900 border-b-2 border-sky-500 rounded-b-2xl mt-2",
+  profilePFP: "w-32 h-32 rounded-full border-4 border-white object-cover bg-blend-multiply ml-2 -mt-10",
+  profileName: "w-1/4 text-2xl font-bold -ml-11 mt-2",
+  profileWallet: "w-1/4 text-sm font-light -ml-11 ",
+  profileEdit: " text-bold   border-2 border-sky-500 rounded-full p-3  m-2  float-right  transform -translate-y-10 -mt-20 mr-5",
+  profileBio: "w-1/4 ext-sm -ml-1 pt-2 pb-1",
+  profileTabs: " text-sm font-bold bg-slate-900",
+  profileTab: "  h-full text-sm font-bold",
+  
 };
 
 export default function Profile() {
@@ -26,11 +37,34 @@ export default function Profile() {
         <div className={styles.wrapper}>
           <div className={styles.columns}>
             <div className={styles.sides}>
-              <Sidebar />
+              <Sidebar /> 
             </div>
             <div className={styles.side2}>
               <div className={styles.feed}>
-                Profile here
+                
+                <img src={defaultImgs[1]} className={styles.profileBanner} />
+                <div className={styles.pfpContainer}>
+                  <img src={defaultImgs[0]} className={styles.profilePFP} />
+                <div className={styles.profileName}>Name</div>
+                <div className={styles.profileWallet}>@ fw34...12</div>
+                <a href="#" className={styles.profileEdit}>Edit Profile</a>
+                
+                {/* <Link></Link> */}
+                <div className={styles.profileBio}>Bio is for weak people</div> 
+                
+                             
+                </div>
+                <div className={styles.profileTabs}>
+                  <div className={styles.profileTab}>Blogs</div>
+                  <Blogs/>
+                  <Blogs/>
+                <Blogs/>
+                <Blogs/>
+                <Blogs/>
+                
+                </div>
+                
+                
               </div>
               <div className={styles.widgets}>
                 <Widgets />
