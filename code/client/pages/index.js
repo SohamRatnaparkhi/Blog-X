@@ -1,20 +1,14 @@
 import Head from "next/head";
-import Sidebar from "../components/Sidebar";
-import Feed from "../components/home/Feed";
-import Widgets from "../components/Widgets";
+import { useMoralis } from "react-moralis";
+import HomeComp from "../components/HomeComp";
+import LoginComp from "../components/LoginComp";
 
 const styles = {
-  wrapper:
-    "flex justify-center items-center h-screen w-screen bg-black text-white overflow-x-hidden",
-  columns:
-    "flex justify-between h-screen w-full text-center  text-white gap-0.5",
-  sides: "basis-1/4 bg-slate-900 h-full",
-  side2: "basis-3/4 bg-slate-900 h-full flex flex-row overflow-x-hidden overflow-y-auto ",
-  feed: "basis-2/3 bg-slate-800 h-full",
-  widgets: "basis-1/3 bg-slate-900 h-full"
+  logout: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded-2xl mx-7 mt-10',
 };
 
 export default function Home() {
+  const { isAuthenticated, Moralis } = useMoralis();
   return (
     <>
       <Head>
@@ -23,20 +17,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className={styles.wrapper}>
-          <div className={styles.columns}>
-            <div className={styles.sides}>
-              <Sidebar />
-            </div>
-            <div className={styles.side2}>
-              <div className={styles.feed}>
-                <Feed />
-              </div>
-              <div className={styles.widgets}>
-                <Widgets />
-              </div>
-            </div>
-          </div>
+        {
+          isAuthenticated ? (<HomeComp />) : (<LoginComp />)
+        }
+        <div className="logout"
+          onClick={() => {
+            Moralis.User.logOut().then(() => {
+              window.location.reload();
+            });
+          }}>
         </div>
       </main>
     </>
