@@ -5211,7 +5211,7 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
-"react-moralis@^1.4.0":
+"react-moralis@^1.4.0", "react-moralis@^1.4.2":
   "integrity" "sha512-M6R9+AO4r/ZmJEMbv2IySnp1+8fRvzu1osehAWYqQgN8cPsHWGuDpnmNSd8Q+DegZ/sjiBkfWjuEXFRwrHYorQ=="
   "resolved" "https://registry.npmjs.org/react-moralis/-/react-moralis-1.4.2.tgz"
   "version" "1.4.2"
@@ -5241,7 +5241,7 @@
     "@remix-run/router" "1.0.2"
     "react-router" "6.4.2"
 
-"react-router@6.4.2":
+"react-router@^6.4.2", "react-router@6.4.2":
   "integrity" "sha512-Rb0BAX9KHhVzT1OKhMvCDMw776aTYM0DtkxqUBP8dNBom3mPXlfNs76JNGK8wKJ1IZEY1+WGj+cvZxHVk/GiKw=="
   "resolved" "https://registry.npmjs.org/react-router/-/react-router-6.4.2.tgz"
   "version" "6.4.2"
