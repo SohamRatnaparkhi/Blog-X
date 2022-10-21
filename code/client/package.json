@@ -10,7 +10,7 @@
     "style:all": "npm run style:lint && npm run style:prettier",
     "style:lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "style:prettier": "prettier --check . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx",
-    "style:prettier:fix": "prettier --write . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx",
+    "style:fix": "prettier --write . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx",
     "prepare": "husky install"
   },
   "dependencies": {
