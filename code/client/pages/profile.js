@@ -4,6 +4,8 @@ import Feed from "../components/home/Feed";
 import Widgets from "../components/Widgets";
 import {defaultImgs} from "../components/home/defaultImgs";
 import Blogs from "../components/home/Blogs";
+import Link from 'next/link'
+
 const styles = {
   wrapper:
     "flex justify-center items-center h-screen w-screen bg-black text-white overflow-x-hidden",
@@ -47,7 +49,12 @@ export default function Profile() {
                   <img src={defaultImgs[0]} className={styles.profilePFP} />
                 <div className={styles.profileName}>Name</div>
                 <div className={styles.profileWallet}>@ fw34...12</div>
-                <a href="#" className={styles.profileEdit}>Edit Profile</a>
+                
+                <Link href="/settings">
+                <div className={styles.profileEdit} >
+                    Edit Profile
+                </div>
+            </Link>
                 
                 {/* <Link></Link> */}
                 <div className={styles.profileBio}>Bio is for weak people</div> 
