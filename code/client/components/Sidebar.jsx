@@ -4,6 +4,7 @@ import { List, Home, User, Phone } from '@web3uikit/icons'
 import SidebarOptions from './SidebarOptions'
 import Link from 'next/link'
 import { useMoralis } from 'react-moralis';
+import { useRouter } from 'next/router'
 
 const styles = {
     container: 'py-4 px-10 bg-gray-50 rounded-2xl bg-[#192734] h-full m-4',
@@ -17,6 +18,7 @@ const styles = {
 const Sidebar = () => {
     const [selected, setSelected] = useState('')
     const { Moralis } = useMoralis();
+    const router = useRouter();
     return (
         <div className={styles.largerscreens}>
             <div className={styles.container}>
@@ -55,6 +57,7 @@ const Sidebar = () => {
             </div>
             <div className="logout"
                 onClick={() => {
+                    router.push('/')
                     Moralis.User.logOut().then(() => {
                         window.location.reload();
                     });
