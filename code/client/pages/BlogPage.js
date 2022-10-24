@@ -11,8 +11,8 @@ const styles = {
     "flex justify-between h-screen w-full text-center  text-white gap-0.5",
   sides: "basis-1/4 bg-slate-900 h-full",
   side2: "basis-3/4 bg-slate-900 h-full flex flex-row overflow-x-hidden overflow-y-auto ",
-  feed: "basis-2/3 bg-slate-800 h-full",
-  widgets: "basis-1/3 bg-slate-900 h-full"
+  feed: "basis-5/6 bg-slate-800 h-full",
+  widgets: "basis-1/4 bg-slate-900 h-full"
 };
 
 export default function BlogPage() {
