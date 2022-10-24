@@ -1,11 +1,10 @@
-import { useState, useContext, useRef } from 'react'
-import { List, Home, User, Phone,Image } from '@web3uikit/icons'
+import { useState, useRef } from 'react'
+import { Image, Matic } from '@web3uikit/icons'
 import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
 import { RiFileGifLine, RiBarChartHorizontalFill } from 'react-icons/ri'
 import { IoMdCalendar } from 'react-icons/io'
 import { MdOutlineLocationOn } from 'react-icons/md'
 import {Icon, Twitter} from 'web3uikit'
-import {Matic} from '@web3uikit/icons'
 
 
 const style = {
