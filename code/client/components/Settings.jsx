@@ -25,7 +25,7 @@ const Settings = () => {
     const [selectedPFP, setSelectedPFP] = useState(null);
     const inputFile = useRef(null);
     const [selectedFile, setSelectedFile] = useState(defaultImgs[1]);
-    const [file, setFile] = useState();
+    const [file, setFile] = useState("");
     const [username, setUsername] = useState("");
     const [bio, setBio] = useState("");
     const [detailsSaved, setDetailsSaved] = useState(false);
@@ -56,7 +56,7 @@ const Settings = () => {
         if (file) {
             const fileObj = new Moralis.File("banner.png", file);
             await fileObj.saveIPFS();
-            userDetails.set("profileBanner", fileObj);
+            userDetails.set("profileBanner", fileObj.ipfs());
         }
 
         console.log("user details saved successfully");

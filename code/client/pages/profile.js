@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Sidebar from "../components/Sidebar";
-import Feed from "../components/home/Feed";
 import Widgets from "../components/Widgets";
 import {defaultImgs} from "../components/home/defaultImgs";
 import Blogs from "../components/home/Blogs";
 import Link from 'next/link'
+import { useMoralis } from "react-moralis";
 
 const styles = {
   wrapper:
@@ -27,6 +27,10 @@ const styles = {
 };
 
 export default function Profile() {
+
+  const { Moralis } = useMoralis();
+  const currentUser = Moralis.User.current();
+
   return (
     <>
       <Head>
@@ -43,11 +47,13 @@ export default function Profile() {
             <div className={styles.side2}>
               <div className={styles.feed}>
                 
-                <img src={defaultImgs[1]} className={styles.profileBanner} />
+                <img src={currentUser.attributes.profileBanner ? currentUser.attributes.profileBanner : defaultImgs[1]} className={styles.profileBanner} />
                 <div className={styles.pfpContainer}>
                   <img src={defaultImgs[0]} className={styles.profilePFP} />
-                <div className={styles.profileName}>Name</div>
-                <div className={styles.profileWallet}>@ fw34...12</div>
+                <div className={styles.profileName}>{currentUser.attributes.username.slice(0, 10) + "..."}</div>
+                <div className={styles.profileWallet}>@ {
+                  currentUser.attributes.ethAddress.slice(0, 6) === "0x" ? currentUser.attributes.ethAddress.slice(0, 6) : currentUser.attributes.ethAddress.slice(0, 10) + "..." + currentUser.attributes.ethAddress.slice(-4)
+                }</div>
                 
                 <Link href="/settingsPage">
                 <div className={styles.profileEdit} >
@@ -56,9 +62,8 @@ export default function Profile() {
             </Link>
                 
                 {/* <Link></Link> */}
-                <div className={styles.profileBio}>Bio is for weak people</div> 
-                
-                             
+                <div className={styles.profileBio}> { 
+                  currentUser.attributes.bio ? currentUser.attributes.bio : "This is a bio" }</div> 
                 </div>
                 <div className={styles.profileTabs}>
                   <div className={styles.profileTab}>Blogs</div>
