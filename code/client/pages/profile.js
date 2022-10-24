@@ -24,7 +24,6 @@ const styles = {
   profileBio: "w-1/4 ext-sm -ml-1 pt-2 pb-1",
   profileTabs: " text-sm font-bold bg-slate-900",
   profileTab: "  h-full text-sm font-bold",
-  
 };
 
 export default function Profile() {
@@ -50,7 +49,7 @@ export default function Profile() {
                 <div className={styles.profileName}>Name</div>
                 <div className={styles.profileWallet}>@ fw34...12</div>
                 
-                <Link href="/settings">
+                <Link href="/settingsPage">
                 <div className={styles.profileEdit} >
                     Edit Profile
                 </div>

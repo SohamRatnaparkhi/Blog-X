@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import { MoralisProvider } from "react-moralis";
+import { NotificationProvider } from 'web3uikit';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -8,7 +9,9 @@ function MyApp({ Component, pageProps }) {
       appId={process.env.NEXT_PUBLIC_APP_ID}
       serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
     >
+      <NotificationProvider>
       <Component {...pageProps} />
+      </NotificationProvider>
     </MoralisProvider>
     </>
   )
