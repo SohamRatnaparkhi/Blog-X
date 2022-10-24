@@ -10,24 +10,24 @@ const styles = {
     icon: 'flex-shrink-0 w-10 text-gray-500 transition duration-75 text-gray-400 group-hover:text-gray-900 group-hover:text-white',
 }
 
-const SidebarOptions = ({ option, Icon, isActive, setSelected, redirect='/'}) => {
+const SidebarOptions = ({ option, Icon, isActive, setSelected, redirect = '/' }) => {
     return (
         <div>
-            <div className={styles.wrapper}
-                onClick={() => {
-                    setSelected(option)
-                    console.log(option)
-                }}>
-                <div className={styles.icon}>
-                    <Icon color="#ffffff"/>
-                </div>
-                
-                <div className={isActive ? styles.active : styles.inactive}>
-                    <Link href={redirect}>
+            <Link href={redirect}>
+                <div className={styles.wrapper}
+                    onClick={() => {
+                        setSelected(option)
+                        console.log(option)
+                    }}>
+                    <div className={styles.icon}>
+                        <Icon color="#ffffff" />
+                    </div>
+
+                    <div className={isActive ? styles.active : styles.inactive}>
                         <a>{option}</a>
-                    </Link>
+                    </div>
                 </div>
-            </div>
+            </Link>
         </div>
     )
 }

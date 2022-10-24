@@ -6,13 +6,13 @@ import TweetBox from "../components/home/TweetBox";
 
 const styles = {
   wrapper:
-    "flex justify-center items-center h-screen w-screen bg-black text-white overflow-x-hidden",
+    "flex justify-center items-center h-screen w-screen bg-[#0f172a] text-white overflow-x-hidden",
   columns:
     "flex justify-between h-screen w-full text-center  text-white gap-0.5",
-  sides: "basis-1/4 bg-slate-900 h-full",
-  side2: "basis-3/4 bg-slate-900 h-full flex flex-row overflow-x-hidden overflow-y-auto ",
-  feed: "basis-5/6 bg-slate-800 h-full",
-  widgets: "basis-1/4 bg-slate-900 h-full"
+  sides: "basis-1/4 bg-slate-900 h-full overflow-y-auto",
+  side2: "basis-3/4 bg-slate-900 h-full flex flex-row overflow-x-hidden  ",
+  feed: "basis-2/3 bg-slate-800 h-full overflow-x-hidden overflow-y-auto",
+  widgets: "basis-1/3 bg-slate-900 h-full overflow-x-hidden overflow-y-auto",
 };
 
 export default function BlogPage() {
