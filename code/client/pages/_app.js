@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }) {
     <MoralisProvider
       appId={process.env.NEXT_PUBLIC_APP_ID}
       serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
+      masterKey={process.env.NEXT_PUBLIC_MASTER_KEY}
     >
       <NotificationProvider>
       <Component {...pageProps} />

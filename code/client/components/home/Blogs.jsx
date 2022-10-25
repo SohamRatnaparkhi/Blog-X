@@ -2,6 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import { Star, Matic, MessageCircle } from '@web3uikit/icons'
 import { BiTransfer } from 'react-icons/bi'
+import { useMoralis } from "react-moralis";
+import { useEffect, useState } from "react";
 
 
 const style = {
@@ -12,45 +14,76 @@ const style = {
 }
 
 
-const Blogs = () => {
-    return (
-        <div>
-            <div className='px-4 py-2'>
-                <div className={style.blogs}>
-                    <div className={style.profile}>
-                        <div className={style.profilechars}>Soham R</div>
-                        <div className={style.profilechars}>abcx12.....0h</div>
-                        <Image
-                            src="/favicon.ico"
-                            alt="Picture of the author"
-                            width={30}
-                            height={30}
-                        />
-                    </div>
-                    <div className={style.content}>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo velit aliquam hic omnis, voluptas facilis minus quia porro animi, recusandae, sapiente numquam. Tempora asperiores eligendi earum accusamus, debitis sint delectus, aut laudantium necessitatibus enim odit recusandae fugit hic mollitia voluptate optio ex placeat quasi, dolores impedit doloremque consequatur assumenda! Repellat, totam! In eveniet assumenda a perspiciatis ipsam, reiciendis qui laudantium nostrum natus quis illo ex odio sapiente distinctio dolore eligendi provident modi quos repellat maxime animi, corporis excepturi hic? Delectus iste, aspernatur hic nostrum explicabo quo, sint quam corporis eius iure voluptates nihil dicta atque sed architecto eum at tempora.
-                        </p>
-                    </div>
-                    <div className={style.engage}>
-                        <div className="star hover:bg-gray-300 p-1 rounded-2xl">
-                            <Star />
-                        </div>
-                        <div className="comment hover:bg-gray-300 p-1 rounded-2xl">
-                            <MessageCircle />
-                        </div>
-                        <div className="share hover:bg-gray-300 p-1 rounded-2xl">
-                            <BiTransfer />
-                        </div>
-                        <div className="matic hover:bg-gray-300 p-1 rounded-2xl">
-                            <Matic />
-                        </div>
-                    </div>
+const Blogs = ({ profile }) => {
+    const [tweetArr, setTweetArr] = useState();
+    const { Moralis, account } = useMoralis();
 
+    useEffect(() => {
+        async function getTweets() {
+            try {
+                const Blogs = Moralis.Object.extend("Blogs");
+                const query = new Moralis.Query(Blogs);
+                if (profile) {
+                    query.equalTo("UserAccount", account);
+                }
+                const results = await query.find();
+
+                setTweetArr(results);
+                console.log(results);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        getTweets();
+    }, [profile]);
+
+    return (
+        <div className='outchecker'>
+            {tweetArr?.map((e) => {
+                <div className='checker'>
+                    <div className='px-4 py-2'>
+                        <div className={style.blogs}>
+                            <div className={style.profile}>
+                                <div className={style.profilechars}>{e.attributes.UserName}</div>
+                                <div className={style.profilechars}>{e.attributes.UserAccount}</div>
+                                <Image
+                                    src="/favicon.ico"
+                                    alt="Picture of the author"
+                                    width={30}
+                                    height={30}
+                                />
+                            </div>
+                            <div className={style.content}>
+                                
+                                    hi i am a blog
+                                    {
+                                        console.log(e.attributes.blogTxt)
+                                    }
+                                    {e.attributes.blogTxt}
+                                
+                            </div>
+                            <div className={style.engage}>
+                                <div className="star hover:bg-gray-300 p-1 rounded-2xl">
+                                    <Star />
+                                </div>
+                                <div className="comment hover:bg-gray-300 p-1 rounded-2xl">
+                                    <MessageCircle />
+                                </div>
+                                <div className="share hover:bg-gray-300 p-1 rounded-2xl">
+                                    <BiTransfer />
+                                </div>
+                                <div className="matic hover:bg-gray-300 p-1 rounded-2xl">
+                                    <Matic />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }).reverse()}
         </div>
     )
 }
+
 
 export default Blogs

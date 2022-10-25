@@ -2,7 +2,7 @@ import Head from "next/head";
 import Sidebar from "../components/Sidebar";
 import Feed from "../components/home/Feed";
 import Widgets from "../components/Widgets";
-import TweetBox from "../components/home/TweetBox";
+import TweetBox from "../components/TweetBox";
 
 const styles = {
   wrapper:

@@ -24,7 +24,7 @@ const HomeComp = () => {
             </div>
             <div className={styles.side2}>
               <div className={styles.feed}>
-                <Feed />
+                <Feed profile={false}/>
               </div>
               <div className={styles.widgets}>
                 <Widgets />
