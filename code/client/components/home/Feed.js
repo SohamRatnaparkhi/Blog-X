@@ -1,6 +1,8 @@
 import {BsStars } from 'react-icons/bs'
-import TweetBox from './TweetBox'
+import TweetBox from '../TweetBox'
 import Blogs from './Blogs'
+import { useMoralis } from "react-moralis";
+import { useEffect, useState } from "react";
 
 const style = {
   wrapper: `flex-[2] border-r border-l border-[#38444d]`,
@@ -9,7 +11,7 @@ const style = {
 }
 
 
-function Feed(){
+function Feed({profile}){
     return(
         <div className='bg-slate-800 pb-4'>
             <div className={style.wrapper}>
@@ -21,16 +23,8 @@ function Feed(){
             </div>
 
             <div>
-                <Blogs/>
-                <Blogs/>
-                <Blogs/>
-                <Blogs/>
-                <Blogs/>
-                <Blogs/>
-                <Blogs/>
-                <Blogs/>
-                <Blogs/>
-                <Blogs/>
+                <Blogs profile={profile}/>
+                
             </div>
        
         </div>
