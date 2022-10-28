@@ -27,6 +27,8 @@ const Blogs = ({ profile }) => {
                 const Blogs = Moralis.Object.extend("Blogs");
                 const query = new Moralis.Query(Blogs);
                 if (profile) {
+                    console.log(query.UserAccount)
+                    console.log(account)
                     query.equalTo("UserAccount", account);
                 }
                 const results = await query.find();
