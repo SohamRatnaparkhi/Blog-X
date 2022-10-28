@@ -66,7 +66,7 @@ export default function Profile() {
                 </div>
                 <div className={styles.profileTabs}>
                   <div className={styles.profileTab}>Blogs</div>
-                  <Blogs profile={true} />
+                  <Blogs profile={true}/>
                 
                 </div>
                 
