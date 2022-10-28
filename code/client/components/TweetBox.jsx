@@ -64,6 +64,8 @@ function TweetBox() {
       const fileobj = new Moralis.File("tweetimg.png", data);
       await fileobj.saveIPFS();
       newBlog.set("tweetImg", fileobj.ipfs());
+    } else { 
+      newBlog.set("tweetImg", "");
     }
     await newBlog.save();
     window.location.reload();

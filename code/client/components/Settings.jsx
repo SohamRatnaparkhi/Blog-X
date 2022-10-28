@@ -57,6 +57,8 @@ const Settings = () => {
             const fileObj = new Moralis.File("banner.png", file);
             await fileObj.saveIPFS();
             userDetails.set("profileBanner", fileObj.ipfs());
+        } else {
+            userDetails.set("profileBanner", "");
         }
 
         console.log("user details saved successfully");

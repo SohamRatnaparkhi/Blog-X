@@ -20,14 +20,15 @@ const Blogs = ({ profile }) => {
     const [blogArr, setblogArr] = useState();
     const { Moralis, account } = useMoralis();
     const router = useRouter();
-
+    console.log(account)
     useEffect(() => {
         async function getblogs() {
             try {
                 const Blogs = Moralis.Object.extend("Blogs");
                 const query = new Moralis.Query(Blogs);
-                if (profile) {
-                    console.log(query.UserAccount)
+                console.log(profile)
+                if (profile == true) {
+                    // console.log(Blogs.attribute.UserAccount)
                     console.log(account)
                     query.equalTo("UserAccount", account);
                 }
