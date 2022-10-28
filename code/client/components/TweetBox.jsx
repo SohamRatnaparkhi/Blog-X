@@ -59,11 +59,12 @@ function TweetBox() {
     newBlog.set("UserName", user.attributes.username);
     newBlog.set("Likes", 0);
 
+    if (file) {
       const data = file;
       const fileobj = new Moralis.File("tweetimg.png", data);
       await fileobj.saveIPFS();
       newBlog.set("tweetImg", fileobj.ipfs());
-
+    }
     await newBlog.save();
     window.location.reload();
 
