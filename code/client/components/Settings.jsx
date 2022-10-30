@@ -73,7 +73,7 @@ const Settings = () => {
     return (
         <>  
             <div className={styles.header}> Settings
-                <BsStars /> </div>
+                <BsStars key={props.stars}/> </div>
             <div className={styles.pa}>
                 <Input
                     label="Name"
