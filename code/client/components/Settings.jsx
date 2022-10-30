@@ -100,7 +100,7 @@ const Settings = () => {
                     {
                         pfp.map((e, i) => {
                             return (
-                                <div >
+                                <div key={profile.pfp}>
                                     <Image
                                         src={e}
                                         alt="pfp"
