@@ -16,18 +16,23 @@ const style = {
 }
 
 
-const Blogs = ({ profile }) => {
+
+const Blogs = ({ profile}) => {
     const [blogArr, setblogArr] = useState();
     const { Moralis, account } = useMoralis();
+    const currentUser = Moralis.User.current();
     const router = useRouter();
-
+    console.log(account)
     useEffect(() => {
         async function getblogs() {
             try {
                 const Blogs = Moralis.Object.extend("Blogs");
                 const query = new Moralis.Query(Blogs);
-                if (profile) {
-                    query.equalTo("UserAccount", account);
+                console.log(profile)
+                if (profile == true) {
+                    // console.log(Blogs.attribute.UserAccount)
+                    console.log(account)
+                    query.equalTo("UserAccount", currentUser.attributes.ethAddress);
                 }
                 const results = await query.find();
 
@@ -36,7 +41,7 @@ const Blogs = ({ profile }) => {
             } catch (error) {
                 console.error(error);
             }
-        }
+        } 
         getblogs();
     }, [profile]);
 

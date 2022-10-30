@@ -46,7 +46,6 @@ export default function Profile() {
             </div>
             <div className={styles.side2}>
               <div className={styles.feed}>
-                
                 <img src={currentUser.attributes.profileBanner ? currentUser.attributes.profileBanner : defaultImgs[1]} className={styles.profileBanner} />
                 <div className={styles.pfpContainer}>
                   <img src={defaultImgs[0]} className={styles.profilePFP} />
@@ -67,7 +66,7 @@ export default function Profile() {
                 </div>
                 <div className={styles.profileTabs}>
                   <div className={styles.profileTab}>Blogs</div>
-                  <Blogs profile={true} />
+                  <Blogs profile={true}/>
                 
                 </div>
                 
