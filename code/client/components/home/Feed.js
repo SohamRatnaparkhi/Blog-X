@@ -11,6 +11,7 @@ const style = {
 }
 
 
+
 function Feed({profile}){
     return(
         <div className='bg-slate-800 pb-4'>

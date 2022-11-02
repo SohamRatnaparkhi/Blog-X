@@ -6,6 +6,7 @@ import { IoMdCalendar } from 'react-icons/io'
 import { MdOutlineLocationOn } from 'react-icons/md'
 import { Icon, Twitter } from 'web3uikit'
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
+import { useRouter } from 'next/router'
 
 const style = {
   wrapper: `sticky border-b-2 border-b-indigo-500 flex flex-row pt-2 p-8 pb-0 rounded-2xl`,
@@ -25,7 +26,7 @@ const style = {
 
 function TweetBox() {
   const { Moralis, isInitialized } = useMoralis();
-  
+  const router = useRouter();
   const [tweetMessage, setTweetMessage] = useState()
   const inputFile = useRef(null)
   const [file, setFile] = useState(null)
@@ -68,8 +69,7 @@ function TweetBox() {
       newBlog.set("tweetImg", "");
     }
     await newBlog.save();
-    window.location.reload();
-
+    router.push('/');
   }
 
   const postToMatic = (event) => {
