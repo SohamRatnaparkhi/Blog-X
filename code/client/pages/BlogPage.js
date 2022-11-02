@@ -31,7 +31,7 @@ export default function BlogPage() {
             </div>
             <div className={styles.side2}>
               <div className={styles.feed}>
-                <TweetBox/>
+                <TweetBox />
               </div>
               <div className={styles.widgets}>
                 <Widgets />

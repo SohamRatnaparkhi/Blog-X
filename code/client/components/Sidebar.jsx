@@ -34,6 +34,13 @@ const Sidebar = () => {
                     redirect="/"
                 />
                 <SidebarOptions
+                    option="Blockchain Blogs"
+                    Icon={List}
+                    isActive={Boolean(selected === 'Blockchain Blogs')}
+                    setSelected={setSelected}
+                    redirect="/Bcblogs"
+                />
+                <SidebarOptions
                     option="Explore"
                     Icon={List}
                     isActive={Boolean(selected === 'Explore')}
