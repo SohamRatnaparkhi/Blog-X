@@ -25,12 +25,12 @@ const style = {
 
 function TweetBox() {
   const { Moralis, isInitialized } = useMoralis();
-  
+
   const [tweetMessage, setTweetMessage] = useState()
   const inputFile = useRef(null)
   const [file, setFile] = useState(null)
   const [selectedFile, setSelectedFile] = useState(null)
-  
+
   var user;
   const onImageClick = () => {
     inputFile.current.click()
@@ -38,7 +38,7 @@ function TweetBox() {
 
   try {
     user = Moralis.User.current();
-    
+
   } catch (error) {
     console.log(error)
   }
@@ -48,7 +48,7 @@ function TweetBox() {
     setFile(img)
     setSelectedFile(URL.createObjectURL(img))
   }
-  
+
   async function saveBlog() {
     const Blogs = Moralis.Object.extend("Blogs");
 
@@ -64,7 +64,7 @@ function TweetBox() {
       const fileobj = new Moralis.File(file.name, data);
       await fileobj.saveIPFS();
       newBlog.set("tweetImg", fileobj.ipfs());
-    } else { 
+    } else {
       newBlog.set("tweetImg", "");
     }
     await newBlog.save();
