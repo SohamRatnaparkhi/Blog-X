@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import BcFeed from "../components/BcFeed";
 import Widgets from "../components/Widgets";
-import { useState } from "react";
+import { TweetContext } from "../context/tweetApp";
+import { RiSendPlaneFill, RiCloseFill } from "react-icons/ri";
+import { AiFillLock, AiFillUnlock } from "react-icons/ai";
+import { MdVerified } from "react-icons/md";
+import Data from "../components/Data";
 
 const styles = {
   wrapper:
@@ -15,7 +19,24 @@ const styles = {
   widgets: "basis-1/3 bg-slate-900 h-full overflow-x-hidden overflow-y-auto",
 };
 
-function Bcblogs() {
+const Bcblogs = () => {
+  const [message, setMessage] = useState("");
+  const {
+    checkIfWalletIsConnect,
+    tweets,
+    getTweet,
+    currentAccount,
+    error,
+    allTweet,
+    myTweet,
+    allAddress,
+  } = useContext(TweetContext);
+
+  useEffect(() => {
+    checkIfWalletIsConnect();
+    getTweet();
+    tweets();
+  }, []);
   return (
     <div>
       <div className={styles.wrapper}>
@@ -25,7 +46,33 @@ function Bcblogs() {
           </div>
           <div className={styles.side2}>
             <div className={styles.feed}>
-              <BcFeed profile={false} />
+              <div>
+                <h2>Tweets</h2>
+                <div>
+                  {myTweet.map((el, i) => (
+                    <div>
+                      <p>{el.slice(0, 40)}..</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Create blockchain tweet</h2>
+              <div>
+                <input
+                  type="Text"
+                  placeholder="Enter your Tweet"
+                  onChange={(e) => setMessage(e.target.value)}
+                />
+
+                <RiSendPlaneFill onClick={() => tweets(message)} />
+              </div>
+              <Data
+                allTweet={allTweet}
+                allAddress={allAddress}
+                myTweet={myTweet}
+              />
             </div>
             <div className={styles.widgets}>
               <Widgets />
@@ -35,6 +82,6 @@ function Bcblogs() {
       </div>
     </div>
   );
-}
+};
 
 export default Bcblogs;
