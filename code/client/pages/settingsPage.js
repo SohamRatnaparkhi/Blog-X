@@ -14,7 +14,7 @@ const styles = {
   widgets: "basis-1/3 bg-slate-900 h-full"
 };
 
-const HomeComp = () => {
+const HomeComp = (props) => {
   return (
     <div>
         <div className={styles.wrapper}>

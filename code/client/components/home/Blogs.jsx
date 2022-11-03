@@ -15,14 +15,12 @@ const style = {
     blogText: `text-md font-bold`,
 }
 
-
-
 const Blogs = ({ profile}) => {
     const [blogArr, setblogArr] = useState();
     const { Moralis, account } = useMoralis();
     const currentUser = Moralis.User.current();
     const router = useRouter();
-    console.log(account)
+    // console.log(account)
     useEffect(() => {
         async function getblogs() {
             try {
@@ -37,7 +35,7 @@ const Blogs = ({ profile}) => {
                 const results = await query.find();
 
                 setblogArr(results);
-                console.log(results);
+                // console.log(results);
             } catch (error) {
                 console.error(error);
             }
@@ -67,7 +65,7 @@ const Blogs = ({ profile}) => {
                         <div className="flex-shrink-0">
                             <Image
                                 className="rounded-full"
-                                src={blog.attributes.UserImage}
+                                src={blog.attributes.UserImage ? blog.attributes.UserImage : "/pfp1.png"}
                                 alt=""
                                 width={40}
                                 height={40}

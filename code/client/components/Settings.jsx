@@ -7,7 +7,7 @@ import { useState, useRef } from 'react'
 import Image from "Next/image";
 import { defaultImgs } from "./home/defaultImgs";
 import { useMoralis } from "react-moralis";
-
+import { useRouter } from "next/router";
 
 const styles = {
     pfp: "m-2 rounded-full border-2 border-white h-48 w-96",
@@ -20,7 +20,7 @@ const styles = {
 }
 
 
-const Settings = () => {
+const Settings = (props) => {
     const pfp = ["/pfp1.png", "/pfp2.png", "/pfp3.png", "/pfp4.png", "/pfp5.png"];
     const [selectedPFP, setSelectedPFP] = useState(null);
     const inputFile = useRef(null);
@@ -29,6 +29,7 @@ const Settings = () => {
     const [username, setUsername] = useState("");
     const [bio, setBio] = useState("");
     const [detailsSaved, setDetailsSaved] = useState(false);
+    const router = useRouter();
 
     const onBannerClick = () => {
         inputFile.current.click();
@@ -65,7 +66,7 @@ const Settings = () => {
 
         await userDetails.save();
         setDetailsSaved(true);
-        window.location.reload();
+        router.push("/profile");
         if(detailsSaved)
             alert("User details saved successfully");
     }
@@ -100,7 +101,7 @@ const Settings = () => {
                     {
                         pfp.map((e, i) => {
                             return (
-                                <div key={profile.pfp}>
+                                <div key={props.pfp}>
                                     <Image
                                         src={e}
                                         alt="pfp"
