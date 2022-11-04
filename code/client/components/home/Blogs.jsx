@@ -66,9 +66,12 @@ const Blogs = ({ profile }) => {
         receiver: recieverId,
     });
 
-    const transferMatics = async () => {
-        const amnt = Number(prompt("Enter the amount of MATIC to transfer"));
 
+    const transferMatics = async () => {
+        // const amnt = Number(prompt("Enter the amount of MATIC to transfer"));
+
+        // console.log(currentUser.attributes.ethAddress);
+        const amnt = value;
         if (recieverId === currentUser.attributes.ethAddress) {
             alert("You can't transfer to yourself");
         }
@@ -77,9 +80,11 @@ const Blogs = ({ profile }) => {
             console.log("Enter a valid amount");
             return;
         }
+        setValue(amnt);
+
         const options = {
             type: "native",
-            amount: amnt,
+            amount: value,
             receiver: recieverId,
         }
         console.log(options);
@@ -101,6 +106,22 @@ const Blogs = ({ profile }) => {
     }
     return (
         <>
+            {/* <div className="payment-modal-body">
+                <div className="payment-modal-input">
+                    <input type="text" onChange={(e) => {
+                        setRecieverId(e.target.value);
+                    }} placeholder="Enter Receiver Address" />
+                </div>
+                <div className="payment-modal-input">
+                    <input type="text" onChange={(e) => {
+                        setValue(e.target.value);
+                    }} placeholder="Enter Amount" />
+                </div>
+            </div>
+            <div className="payment-modal-footer">
+                <button onClick={transferMatics}>Transfer</button>
+            </div> */}
+
             {blogArr && blogArr.map((blog) => (
                 <div className={style.blogs}>
                     <div>
@@ -146,9 +167,9 @@ const Blogs = ({ profile }) => {
                             <div className="flex items-center gap-1" onClick={() => {
                                 setRecieverId(blog.attributes.UserAccount);
                                 // console.log(recieverId);
-                                transferMatics()
+                                // transferMatics()
                             }}>
-                                <Matic className="w-5 h-5 text-matic-500" disabled={isFetching}/>
+                                <Matic className="w-5 h-5 text-matic-500" disabled={isFetching} />
                                 <p>{blog.attributes.Matic}</p>
                             </div>
                         </div>
@@ -157,7 +178,8 @@ const Blogs = ({ profile }) => {
                         </div>
                     </div>
                 </div>
-            )).reverse()}
+            )).reverse()
+            }
         </>
     )
 }

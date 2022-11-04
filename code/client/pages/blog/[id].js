@@ -6,9 +6,8 @@ import { useMoralis } from "react-moralis";
 import Widgets from "../../components/Widgets";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { getAllPostIds, getPostData } from "../../components/home/Blogs";
-import { useState } from "react";
 
+import { useState } from "react";
 
 const styles = {
   wrapper:
@@ -21,12 +20,7 @@ const styles = {
   widgets: "basis-1/3 bg-slate-900 h-full overflow-x-hidden overflow-y-auto",
 };
 
-
-
-
 const Details = ({ Blogs }) => {
-
-
   const { user, isAuthenticated, isAuthenticating } = useMoralis();
   const { Moralis, account } = useMoralis();
   const router = useRouter();
@@ -41,46 +35,32 @@ const Details = ({ Blogs }) => {
       const blog = await query.get(id);
       console.log(blog);
       setBlog(blog);
-      
     } catch (error) {
-        console.error(error);
+      console.error(error);
     }
-} 
+  }
 
-  
-  
-  
-  
   return (
-      
-
     <div>
-        <div className={styles.wrapper}>
-          <div className={styles.columns}>
-            <div className={styles.sides}>
-              <Sidebar />
-            </div>
-            <div className={styles.side2}>
-              <div className={styles.feed}>
+      <div className={styles.wrapper}>
+        <div className={styles.columns}>
+          <div className={styles.sides}>
+            <Sidebar />
+          </div>
+          <div className={styles.side2}>
+            <div className={styles.feed}>
               {id}
-              <br/>
-             <div onClick={() => getblogs(id)}>{b.attributes.blogTxt}</div>
-              
-             
-              
-               
-              
-              
-              </div>
-              <div className={styles.widgets}>
-                <Widgets />
-              </div>
+              <br />
+              <div onClick={() => getblogs(id)}>{b.attributes.blogTxt}</div>
+            </div>
+            <div className={styles.widgets}>
+              <Widgets />
             </div>
           </div>
         </div>
+      </div>
     </div>
   );
-}
+};
 
-export default Details
-
+export default Details;

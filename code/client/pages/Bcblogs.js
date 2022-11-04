@@ -7,6 +7,7 @@ import { RiSendPlaneFill, RiCloseFill } from "react-icons/ri";
 import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 import { MdVerified } from "react-icons/md";
 import Data from "../components/Data";
+import BcBlogs from "../components/BcBlogs";
 
 const styles = {
   wrapper:
@@ -46,33 +47,7 @@ const Bcblogs = () => {
           </div>
           <div className={styles.side2}>
             <div className={styles.feed}>
-              <div>
-                <h2>Tweets</h2>
-                <div>
-                  {myTweet.map((el, i) => (
-                    <div>
-                      <p>{el.slice(0, 40)}..</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2>Create blockchain tweet</h2>
-              <div>
-                <input
-                  type="Text"
-                  placeholder="Enter your Tweet"
-                  onChange={(e) => setMessage(e.target.value)}
-                />
-
-                <RiSendPlaneFill onClick={() => tweets(message)} />
-              </div>
-              <Data
-                allTweet={allTweet}
-                allAddress={allAddress}
-                myTweet={myTweet}
-              />
+              <BcBlogs />
             </div>
             <div className={styles.widgets}>
               <Widgets />
@@ -85,3 +60,13 @@ const Bcblogs = () => {
 };
 
 export default Bcblogs;
+
+// <div>
+//   {myTweet
+//     .map((el, i) => (
+//       <div>
+//         <p>{el.slice(0, 40)}..</p>
+//       </div>
+//     ))
+//     .reverse()}
+// </div>
