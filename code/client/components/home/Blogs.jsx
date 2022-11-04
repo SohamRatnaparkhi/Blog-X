@@ -1,12 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router';
-import { Star, Matic, MessageCircle } from '@web3uikit/icons'
+import { Star, Copy, MessageCircle } from '@web3uikit/icons'
 import { BiTransfer } from 'react-icons/bi'
 import { useMoralis } from "react-moralis";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import Link from 'next/link'
-import { useWeb3Transfer } from "react-moralis";
 
 
 const style = {
@@ -17,12 +16,9 @@ const style = {
     blogText: `text-md font-bold`,
 }
 
-
 const Blogs = ({ profile }) => {
     const [blogArr, setblogArr] = useState();
     const { Moralis, account, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading } = useMoralis();
-    const [recieverId, setRecieverId] = useState("");
-    const [value, setValue] = useState(0);
     const currentUser = Moralis.User.current();
     const router = useRouter();
     // console.log(account)
@@ -59,69 +55,8 @@ const Blogs = ({ profile }) => {
         await blog.save();
         refreshData();
     }
-
-    const { fetch, error, isFetching } = useWeb3Transfer({
-        type: "native",
-        amount: Moralis.Units.ETH(value),
-        receiver: recieverId,
-    });
-
-
-    const transferMatics = async () => {
-        // const amnt = Number(prompt("Enter the amount of MATIC to transfer"));
-
-        // console.log(currentUser.attributes.ethAddress);
-        const amnt = value;
-        if (recieverId === currentUser.attributes.ethAddress) {
-            alert("You can't transfer to yourself");
-        }
-
-        if (amnt === null || amnt === 0) {
-            console.log("Enter a valid amount");
-            return;
-        }
-        setValue(amnt);
-
-        const options = {
-            type: "native",
-            amount: value,
-            receiver: recieverId,
-        }
-        console.log(options);
-        if (!isWeb3Enabled) {
-            await Moralis.enableWeb3();
-        }
-        fetch({
-            onSuccess: () => {
-                alert("Transaction Successful");
-            },
-            oneError: (error) => {
-                console.log(error);
-            },
-            onComplete: () => {
-                console.log("Transaction Completed");
-            },
-            throwOnError: true,
-        });
-    }
     return (
         <>
-            {/* <div className="payment-modal-body">
-                <div className="payment-modal-input">
-                    <input type="text" onChange={(e) => {
-                        setRecieverId(e.target.value);
-                    }} placeholder="Enter Receiver Address" />
-                </div>
-                <div className="payment-modal-input">
-                    <input type="text" onChange={(e) => {
-                        setValue(e.target.value);
-                    }} placeholder="Enter Amount" />
-                </div>
-            </div>
-            <div className="payment-modal-footer">
-                <button onClick={transferMatics}>Transfer</button>
-            </div> */}
-
             {blogArr && blogArr.map((blog) => (
                 <div className={style.blogs}>
                     <div>
@@ -164,13 +99,11 @@ const Blogs = ({ profile }) => {
                                     <p>{blog.attributes.Shares}</p>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-1" onClick={() => {
-                                setRecieverId(blog.attributes.UserAccount);
-                                // console.log(recieverId);
-                                // transferMatics()
+                            <div className="flex items-center gap-1" onClick={()=>{
+                                navigator.clipboard.writeText(blog.attributes.UserAccount);
+                                alert("Copied to clipboard!");
                             }}>
-                                <Matic className="w-5 h-5 text-matic-500" disabled={isFetching} />
-                                <p>{blog.attributes.Matic}</p>
+                                <Copy/>
                             </div>
                         </div>
                         <div>
