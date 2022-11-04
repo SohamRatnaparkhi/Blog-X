@@ -4,7 +4,6 @@ import Head from "next/head";
 import Blogs from "../../components/home/Blogs";
 import { useMoralis } from "react-moralis";
 import Widgets from "../../components/Widgets";
-import { profile } from "console";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { getAllPostIds, getPostData } from "../../components/home/Blogs";
