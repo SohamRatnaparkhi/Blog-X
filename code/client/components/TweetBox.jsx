@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useContext, useEffect } from 'react'
 import { Image, Matic } from '@web3uikit/icons'
 import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
 import { RiFileGifLine, RiBarChartHorizontalFill } from 'react-icons/ri'
@@ -7,6 +7,8 @@ import { MdOutlineLocationOn } from 'react-icons/md'
 import { Icon, Twitter } from 'web3uikit'
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
 import { useRouter } from 'next/router'
+import { TweetContext } from "../context/tweetApp";
+import Data from "../components/Data";
 
 const style = {
   wrapper: `sticky border-b-2 border-b-indigo-500 flex flex-row pt-2 p-8 pb-0 rounded-2xl`,
@@ -31,6 +33,23 @@ function TweetBox() {
   const inputFile = useRef(null)
   const [file, setFile] = useState(null)
   const [selectedFile, setSelectedFile] = useState(null)
+
+  const {
+    checkIfWalletIsConnect,
+    tweets,
+    getTweet,
+    currentAccount,
+    error,
+    allTweet,
+    myTweet,
+    allAddress,
+  } = useContext(TweetContext);
+
+  useEffect(() => {
+    checkIfWalletIsConnect();
+    getTweet();
+    tweets();
+  }, []);
 
   var user;
   const onImageClick = () => {
@@ -126,21 +145,27 @@ function TweetBox() {
               Hit it!
             </div>
 
-            <button
+            <div
               type='submit'
-              disabled={!tweetMessage}
-              onClick={event => postToMatic(event)}
+              //disabled={!tweetMessage}
+              onClick={() => { tweets(tweetMessage); }}
               className={`${style.submitmatic} ${tweetMessage ? style.activeSubmit : style.inactiveSubmit
                 }`}
             >
               <Matic fontSize='20px' />
-            </button>
-
+            </div>
+            <div>
+              <Data
+                allTweet={allTweet}
+                allAddress={allAddress}
+                myTweet={myTweet}
+              />
+            </div>
 
           </div>
-        </form>
-      </div>
-    </div>
+        </form >
+      </div >
+    </div >
   )
 }
 

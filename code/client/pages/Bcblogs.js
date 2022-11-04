@@ -49,30 +49,15 @@ const Bcblogs = () => {
               <div>
                 <h2>Tweets</h2>
                 <div>
-                  {myTweet.map((el, i) => (
-                    <div>
-                      <p>{el.slice(0, 40)}..</p>
-                    </div>
-                  ))}
+                  {myTweet
+                    .map((el, i) => (
+                      <div>
+                        <p>{el.slice(0, 40)}..</p>
+                      </div>
+                    ))
+                    .reverse()}
                 </div>
               </div>
-            </div>
-            <div>
-              <h2>Create blockchain tweet</h2>
-              <div>
-                <input
-                  type="Text"
-                  placeholder="Enter your Tweet"
-                  onChange={(e) => setMessage(e.target.value)}
-                />
-
-                <RiSendPlaneFill onClick={() => tweets(message)} />
-              </div>
-              <Data
-                allTweet={allTweet}
-                allAddress={allAddress}
-                myTweet={myTweet}
-              />
             </div>
             <div className={styles.widgets}>
               <Widgets />
