@@ -1,11 +1,12 @@
 import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router';
-import { Star, Matic, MessageCircle } from '@web3uikit/icons'
+import { Star, Copy, MessageCircle } from '@web3uikit/icons'
 import { BiTransfer } from 'react-icons/bi'
 import { useMoralis } from "react-moralis";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import Link from 'next/link'
+
 
 const style = {
     blogs: `bg-[#fff] text-[#15202b] p-4 rounded-lg shadow-md text-left mt-4 flex flex-col`,
@@ -17,7 +18,7 @@ const style = {
 
 const Blogs = ({ profile }) => {
     const [blogArr, setblogArr] = useState();
-    const { Moralis, account } = useMoralis();
+    const { Moralis, account, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading } = useMoralis();
     const currentUser = Moralis.User.current();
     const router = useRouter();
     // console.log(account)
@@ -26,7 +27,7 @@ const Blogs = ({ profile }) => {
             try {
                 const Blogs = Moralis.Object.extend("Blogs");
                 const query = new Moralis.Query(Blogs);
-                console.log(profile)
+                // console.log(profile)
                 if (profile == true) {
                     // console.log(Blogs.attribute.UserAccount)
                     console.log(account)
@@ -54,61 +55,61 @@ const Blogs = ({ profile }) => {
         await blog.save();
         refreshData();
     }
-
     return (
         <>
             {blogArr && blogArr.map((blog) => (
                 <div className={style.blogs}>
-                    <Link href={'/blog/' + blog.id} key={blog.id} >
-                        <div>
-                            <div className={style.profile}>
-                                <div className="flex-shrink-0">
-                                    <Image
-                                        className="rounded-full"
-                                        src={blog.attributes.UserImage ? blog.attributes.UserImage : "/pfp1.png"}
-                                        alt=""
-                                        width={40}
-                                        height={40}
-                                    />
-                                </div>
-
-                                <div className={style.profilechars}>
-                                    <p className="font-bold">{blog.attributes.UserName}</p>
-                                    <p className="text-gray-500">{blog.attributes.UserAccount.slice(0, 10) + "...." + blog.attributes.UserAccount.slice(-4)}</p>
-                                </div>
+                    <div>
+                        <div className={style.profile}>
+                            <div className="flex-shrink-0">
+                                <Image
+                                    className="rounded-full"
+                                    src={blog.attributes.UserImage ? blog.attributes.UserImage : "/pfp1.png"}
+                                    alt=""
+                                    width={40}
+                                    height={40}
+                                />
                             </div>
-                            <div className={style.blogText}>
-                                {blog.attributes.blogTxt}
-                                <img src={blog.attributes.tweetImg} alt="" />
-                            </div>
-
-                            <div className={style.engage}>
-                                <div className="flex flex-row gap-2">
-                                    <div className="flex items-center gap-1">
-                                        <Star className="w-5 h-5 text-yellow-400"
-                                            onClick={() => { incrementLikes(blog.id); }} />
-                                        <p>{blog.attributes.Likes}</p>
-                                        <p>{blog.attributes.objectId}</p>
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                        <MessageCircle className="w-5 h-5 text-blue-500" />
-                                        <p>{blog.attributes.Comments}</p>
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                        <BiTransfer className="w-5 h-5 text-green-400" />
-                                        <p>{blog.attributes.Shares}</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-1">
-                                    <Matic className="w-5 h-5 text-matic-500" />
-                                    <p>{blog.attributes.Matic}</p>
-                                </div>
-                            </div>
-                            <div>
-                                <p>{blog.attributes.createdAt.toDateString()}</p>
+                            <div className={style.profilechars}>
+                                <p className="font-bold">{blog.attributes.UserName}</p>
+                                <p className="text-gray-500">{blog.attributes.UserAccount.slice(0, 10) + "...." + blog.attributes.UserAccount.slice(-4)}</p>
                             </div>
                         </div>
-                    </Link>
+                        <div className={style.blogText}>
+                            <Link href={'/blog/' + blog.id} key={blog.id} >
+                                <p> {blog.attributes.blogTxt} </p>
+                            </Link>
+
+                            <img src={blog.attributes.tweetImg} alt="" />
+                        </div>
+                        <div className={style.engage}>
+                            <div className="flex flex-row gap-2">
+                                <div className="flex items-center gap-1">
+                                    <Star className="w-5 h-5 text-yellow-400"
+                                        onClick={() => { incrementLikes(blog.id); }} />
+                                    <p>{blog.attributes.Likes}</p>
+                                    <p>{blog.attributes.objectId}</p>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <MessageCircle className="w-5 h-5 text-blue-500" />
+                                    <p>{blog.attributes.Comments}</p>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <BiTransfer className="w-5 h-5 text-green-400" />
+                                    <p>{blog.attributes.Shares}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-1" onClick={()=>{
+                                navigator.clipboard.writeText(blog.attributes.UserAccount);
+                                alert("Copied to clipboard!");
+                            }}>
+                                <Copy/>
+                            </div>
+                        </div>
+                        <div>
+                            <p>{blog.attributes.createdAt.toDateString()}</p>
+                        </div>
+                    </div>
                 </div>
             )).reverse()
             }
