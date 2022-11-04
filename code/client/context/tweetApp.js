@@ -30,7 +30,7 @@ export const TweetProvider = ({ children }) => {
       setError("Please install metamask & connect, reload");
     }
   };
-
+  const created = false;
   //interacting with smart contract
 
   const tweets = async (message) => {
@@ -42,9 +42,18 @@ export const TweetProvider = ({ children }) => {
       const signer = provider.getSigner();
       const contract = fetchContract(signer);
 
-      const createTweet = await contract.createTweet(message);
-      createTweet.wait();
-
+      //const createTweet = await contract.createTweet(message);
+      //await createTweet.wait();
+      contract
+        .createTweet(message)
+        .then((tx) => {
+          router.push("Bcblogs");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      //router.push("/Bcblogs");
+      created = true;
       console.log(createTweet);
     } catch (error) {
       setError("Something wrong creating list");
