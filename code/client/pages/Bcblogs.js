@@ -7,6 +7,7 @@ import { RiSendPlaneFill, RiCloseFill } from "react-icons/ri";
 import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 import { MdVerified } from "react-icons/md";
 import Data from "../components/Data";
+import BcBlogs from "../components/BcBlogs";
 
 const styles = {
   wrapper:
@@ -46,18 +47,7 @@ const Bcblogs = () => {
           </div>
           <div className={styles.side2}>
             <div className={styles.feed}>
-              <div>
-                <h2>Tweets</h2>
-                <div>
-                  {myTweet
-                    .map((el, i) => (
-                      <div>
-                        <p>{el.slice(0, 40)}..</p>
-                      </div>
-                    ))
-                    .reverse()}
-                </div>
-              </div>
+              <BcBlogs />
             </div>
             <div className={styles.widgets}>
               <Widgets />
@@ -70,3 +60,13 @@ const Bcblogs = () => {
 };
 
 export default Bcblogs;
+
+// <div>
+//   {myTweet
+//     .map((el, i) => (
+//       <div>
+//         <p>{el.slice(0, 40)}..</p>
+//       </div>
+//     ))
+//     .reverse()}
+// </div>
