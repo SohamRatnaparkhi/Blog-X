@@ -20,25 +20,38 @@ const styles = {
   widgets: "basis-1/3 bg-slate-900 h-full overflow-x-hidden overflow-y-auto",
 };
 
-const Details = ({ Blogs }) => {
-  const { user, isAuthenticated, isAuthenticating } = useMoralis();
+const Details = () => {
+  const { isInitialized } = useMoralis();
   const { Moralis, account } = useMoralis();
   const router = useRouter();
   const { id } = router.query;
   const [b, setBlog] = useState(null);
 
-  async function getblogs(id) {
-    try {
-      const Blogs = Moralis.Object.extend("Blogs");
-      const query = new Moralis.Query(Blogs);
-      console.log(id);
-      const blog = await query.get(id);
-      console.log(blog);
-      setBlog(blog);
-    } catch (error) {
-      console.error(error);
+  useEffect(() => {
+    if (isInitialized) {
+      console.log("Moralis initialized");
+    } else {
+      router.push('/');
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    async function getblogs(id) {
+      console.log(id + "in getblogs");
+      try {
+        const Blogs = Moralis.Object.extend("Blogs");
+        const query = new Moralis.Query(Blogs);
+        console.log(query);
+        console.log(id);
+        const blog = await query.get(id);
+        console.log(blog);
+        setBlog(blog);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getblogs(id);
+  }, [id]);
 
   return (
     <div>
@@ -51,7 +64,7 @@ const Details = ({ Blogs }) => {
             <div className={styles.feed}>
               {id}
               <br />
-              <div onClick={() => getblogs(id)}>{b.attributes.blogTxt}</div>
+              <div >{b && b.attributes.blogTxt}</div>
             </div>
             <div className={styles.widgets}>
               <Widgets />

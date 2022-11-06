@@ -31,10 +31,20 @@ const style = {
 
 function Widgets() {
 
-    const { Moralis, account, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading } = useMoralis();
+    const { Moralis, user, isInitialized, account, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading } = useMoralis();
     const [recieverId, setRecieverId] = useState("");
     const [value, setValue] = useState(0);
-    const currentUser = Moralis.User.current();
+    const [currentUser, setCurrentUser] = useState(user);
+
+    useEffect(() => {
+        if (isInitialized) {
+            console.log("Moralis initialized");
+            setCurrentUser(Moralis.User.current());
+        } else {
+            router.push('/');
+        }
+    }, []);
+
 
     const router = useRouter();
 
