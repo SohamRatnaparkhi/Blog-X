@@ -75,7 +75,7 @@ export const TweetProvider = ({ children }) => {
       getAllAddress.map(async (el) => {
         const getSingleData = await contract.getTweetData(el);
         allTweet.push(getTweet);
-        console.log(getSingleData);
+        //console.log(getSingleData);
       });
 
       const allMessage = await contract.getMessage();

@@ -3,7 +3,7 @@ import Data from "../components/Data";
 import Image from 'next/image'
 import { TweetContext } from "../context/tweetApp";
 import { useRouter } from 'next/router';
-import { Star, Matic, MessageCircle } from '@web3uikit/icons'
+import { Star, Copy, Matic, MessageCircle } from '@web3uikit/icons'
 import { BiTransfer } from 'react-icons/bi'
 import { BsStars } from 'react-icons/bs'
 
@@ -67,13 +67,16 @@ const BcBlogs = () => {
                                                 </div>
                                                 <div className={style.profilechars}>
                                                     <p className="font-bold">Username</p>
-                                                    <p className="text-gray-500">Metamask id</p>
+                                                    <p className="text-sm text-gray-400">{allAddress[i].slice(0, 10)}....{allAddress[i].slice(-4)}</p>
                                                 </div>
                                             </div>
                                             <p>{el.slice(0, 40)}..</p>
                                             <div className={style.engage}>
-                                                <div className="flex items-center gap-1">
-                                                    <Matic className="w-5 h-5 text-matic-500" />
+                                                <div className="flex items-center gap-1" onClick={() => {
+                                                    navigator.clipboard.writeText(allAddress[i]);
+                                                    alert("Copied to clipboard!");
+                                                }}>
+                                                    <Copy />
                                                 </div>
                                             </div>
                                         </div>
