@@ -6,8 +6,7 @@ import { useRouter } from 'next/router';
 import { Star, Copy, Matic, MessageCircle } from '@web3uikit/icons'
 import { BiTransfer } from 'react-icons/bi'
 import { BsStars } from 'react-icons/bs'
-
-
+import styles from "./BcBlogs.module.css"
 
 const style = {
     blogs: `bg-[#fff] text-[#15202b] p-4 rounded-lg shadow-md text-left mt-4 flex flex-col`,
@@ -67,10 +66,12 @@ const BcBlogs = () => {
                                                 </div>
                                                 <div className={style.profilechars}>
                                                     <p className="font-bold">Username</p>
-                                                    <p className="text-sm text-gray-400">{allAddress[i].slice(0, 10)}....{allAddress[i].slice(-4)}</p>
+                                                    <p className="text-sm text-gray-400">{allAddress ? allAddress[i].slice(0, 6) + "...." + allAddress[i].slice(-4) : ""}</p>
                                                 </div>
                                             </div>
-                                            <p>{el.slice(0, 40)}..</p>
+                                            <div className={styles.blog_text}>
+                                                    {el}
+                                            </div>
                                             <div className={style.engage}>
                                                 <div className="flex items-center gap-1" onClick={() => {
                                                     navigator.clipboard.writeText(allAddress[i]);

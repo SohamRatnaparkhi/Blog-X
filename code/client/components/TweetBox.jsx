@@ -15,7 +15,7 @@ const style = {
   tweetBoxLeft: `mr-4`,
   tweetBoxRight: `flex-1 p-4 bg-slate-800 rounded-2xl`,
   profileImage: `w-16 h-16 rounded-full mt-6 ml-1 mr-0`,
-  inputField: `w-full h-full outline-none bg-transparent text-lg pb-0 py-3 px-2 border-b-2 border-b-indigo-500 `,
+  inputField: `w-full h-full box-content outline-none bg-transparent text-lg pb-0 py-3 px-2 border-b-2 border-b-indigo-500 `,
   formLowerContainer: `flex`,
   iconsContainer: `text-[#1d9bf0] flex flex-1 items-center`,
   icon: `mr-2 w-7 h-7 m-2 hover:bg-[#15202b] rounded-full p-1 cursor-pointer`,
@@ -111,6 +111,7 @@ function TweetBox() {
             value={tweetMessage}
             placeholder="What's happening?"
             className={style.inputField}
+            rows="15"
           />
           {selectedFile && (
             <img src={selectedFile} alt="selected file" className="w-full" />

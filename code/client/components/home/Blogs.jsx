@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import { Star, Copy, MessageCircle } from '@web3uikit/icons'
 import { BiTransfer } from 'react-icons/bi'
 import { useMoralis } from "react-moralis";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Link from 'next/link'
-
+import styles from './Blogs.module.css'
 
 const style = {
     blogs: `bg-[#fff] text-[#15202b] p-4 rounded-lg shadow-md text-left mt-4 flex flex-col`,
@@ -77,7 +77,7 @@ const Blogs = ({ profile }) => {
                         </div>
                         <div className={style.blogText}>
                             <Link href={'/blog/' + blog.id} key={blog.id} >
-                                <p> {blog.attributes.blogTxt} </p>
+                                <div className={styles.blog_text}> {blog.attributes.blogTxt} </div>
                             </Link>
 
                             <img src={blog.attributes.tweetImg} alt="" />
@@ -99,11 +99,11 @@ const Blogs = ({ profile }) => {
                                     <p>{blog.attributes.Shares}</p>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-1" onClick={()=>{
+                            <div className="flex items-center gap-1" onClick={() => {
                                 navigator.clipboard.writeText(blog.attributes.UserAccount);
                                 alert("Copied to clipboard!");
                             }}>
-                                <Copy/>
+                                <Copy />
                             </div>
                         </div>
                         <div>
