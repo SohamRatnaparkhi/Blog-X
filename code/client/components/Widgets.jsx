@@ -1,6 +1,5 @@
 import { BiSearch } from 'react-icons/bi'
-import { news, whoToFollow } from '../Assests/static'
-import { Star, Matic, MessageCircle } from '@web3uikit/icons'
+import { news} from '../Assests/static'
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
