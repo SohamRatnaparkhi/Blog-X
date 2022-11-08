@@ -7,7 +7,7 @@ import { useMoralis } from 'react-moralis';
 import { useRouter } from 'next/router'
 
 const styles = {
-    container: 'py-4 px-10 bg-gray-50 rounded-2xl bg-[#192734] h-full w-3/4 m-auto mt-4',
+    container: 'py-4 px-10 bg-gray-50 rounded-2xl h-full w-3/4 m-auto mt-4',
     title: 'text-4xl font-bold py-4 hover:underline cursor-pointer font-normal hover:font-bold',
     option: 'flex flex-col justify-center items-center py-2 hover:bg-slate-700 cursor-pointer mx-12 rounded-2xl',
     publish: 'text-2xl font-bold py-4 hover: cursor-pointer font-normal hover:font-bold text-center bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-2xl w-1/2 m-auto mt-8',
@@ -15,13 +15,14 @@ const styles = {
     logout: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded-2xl w-1/2 m-auto mt-10',
 }
 
+
 const Sidebar = () => {
     const [selected, setSelected] = useState()
     const { Moralis } = useMoralis();
     const router = useRouter();
     return (
         <div className={styles.largerscreens}>
-            <div className={styles.container}>
+            <div className={styles.container} style={{ backgroundColor: '#192734' }}>
                 <div className={styles.title}>Blog-X</div>
                 <hr />
                 <br />
