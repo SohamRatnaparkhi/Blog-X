@@ -8,6 +8,7 @@ import Image from "Next/image";
 import { defaultImgs } from "./home/defaultImgs";
 import { useMoralis } from "react-moralis";
 import { useRouter } from "next/router";
+import uploadImg from "./ImageUpload";
 
 const styles = {
     pfp: "m-2 rounded-full border-2 border-white h-48 w-96",
@@ -29,6 +30,7 @@ const Settings = (props) => {
     const [username, setUsername] = useState("");
     const [bio, setBio] = useState("");
     const [detailsSaved, setDetailsSaved] = useState(false);
+    const [bannerUrl, setBannerUrl] = useState("");
     const router = useRouter();
 
     const onBannerClick = () => {
@@ -55,11 +57,12 @@ const Settings = (props) => {
         userDetails.set("pfp", selectedPFP);
 
         if (file) {
-            const fileObj = new Moralis.File("banner.png", file);
-            await fileObj.saveIPFS();
-            userDetails.set("profileBanner", fileObj.ipfs());
+            const data = file;
+            const fileData = await uploadImg(data, setBannerUrl);
+            console.log("url = " + bannerUrl);
+            userDetails.set("banner", bannerUrl);
         } else {
-            userDetails.set("profileBanner", "");
+            userDetails.set("profileBanner", "abcd");
         }
 
         console.log("user details saved successfully");
