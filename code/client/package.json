@@ -12,8 +12,7 @@
     "style:prettier": "prettier --check . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx",
     "style:fix": "prettier --write . --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx",
     "hardhatCompile": "npx hardhat run scripts/deploy.js --network mumbai",
-    "moveTweet":"mv artifacts/contracts/Tweet.sol/Tweet.json context"
-
+    "moveTweet": "mv artifacts/contracts/Tweet.sol/Tweet.json context"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
@@ -23,6 +22,7 @@
     "eslint-config-next": "^13.0.1",
     "ethers": "^5.7.2",
     "next": "^12.3.1",
+    "particles.js": "^2.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
