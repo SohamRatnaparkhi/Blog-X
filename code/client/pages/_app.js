@@ -17,7 +17,8 @@ const MyApp = ({ Component, pageProps }) => (
             <div className="basis-2/3">Search bar/publish</div>
             <div className="basis-1/3">profile</div>
           </div>
-          <div className="mt-2">
+          <div className="pt-2 bg-[#0f172a]"></div>
+          <div className="">
             <Component {...pageProps} />
           </div>
           
