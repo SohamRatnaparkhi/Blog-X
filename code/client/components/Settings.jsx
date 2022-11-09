@@ -8,6 +8,7 @@ import Image from "Next/image";
 import { defaultImgs } from "./home/defaultImgs";
 import { useMoralis } from "react-moralis";
 import { useRouter } from "next/router";
+import uploadImg from "./ImageUpload";
 
 const styles = {
     pfp: "m-2 rounded-full border-2 border-white h-48 w-96",
@@ -29,6 +30,7 @@ const Settings = (props) => {
     const [username, setUsername] = useState("");
     const [bio, setBio] = useState("");
     const [detailsSaved, setDetailsSaved] = useState(false);
+    const [bannerUrl, setBannerUrl] = useState("");
     const router = useRouter();
 
     const onBannerClick = () => {
@@ -45,7 +47,6 @@ const Settings = (props) => {
 
     const saveSettings = async () => {
         console.log("saving changed user details");
-        console.log(Moralis);
         const User = await Moralis.Object.extend("_User");
         const query = new Moralis.Query(User); // create a new query
         const userDetails = await query.first(); // get the first user
@@ -55,11 +56,19 @@ const Settings = (props) => {
         userDetails.set("pfp", selectedPFP);
 
         if (file) {
-            const fileObj = new Moralis.File("banner.png", file);
-            await fileObj.saveIPFS();
-            userDetails.set("profileBanner", fileObj.ipfs());
+            const url = await uploadImg(file, setBannerUrl);
+            if (bannerUrl) {
+                userDetails.set("banner", url);
+            } else {
+                if (url) {
+                    userDetails.set("banner", url);
+                } else {
+                    console.log("error uploading banner");
+                }
+
+            }
         } else {
-            userDetails.set("profileBanner", "");
+            userDetails.set("profileBanner", "abcd");
         }
 
         console.log("user details saved successfully");

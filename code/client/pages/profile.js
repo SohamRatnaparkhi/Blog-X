@@ -17,7 +17,7 @@ const styles = {
   side2: "basis-3/4 bg-slate-900 h-full flex flex-row overflow-x-hidden  ",
   feed: "basis-2/3 bg-slate-800 h-full overflow-x-hidden overflow-y-auto",
   widgets: "basis-1/3 bg-slate-900 h-full overflow-x-hidden overflow-y-auto",
-  profileBanner: "w-full  h-220px bg-slate-900",
+  banner: "w-full  h-220px bg-slate-900",
   pfpContainer: "w-full  h-1/3 bg-slate-900 border-b-2 border-sky-500 rounded-b-2xl mt-2",
   profilePFP: "w-32 h-32 rounded-full border-4 border-white object-cover bg-blend-multiply ml-2 -mt-10",
   profileName: "w-1/4 text-2xl font-bold -ml-11 mt-2",
@@ -91,7 +91,7 @@ export default function Profile() {
 
               <div className={styles.side2}>
                 <div className={styles.feed}>
-                  <img src={currentUser.attributes.profileBanner ? currentUser.attributes.profileBanner : defaultImgs[1]} className={styles.profileBanner} />
+                  <img src={currentUser.attributes.banner ? currentUser.attributes.banner : defaultImgs[1]} className={styles.banner} />
                   <div className={styles.pfpContainer}>
                     <img src={defaultImgs[0]} className={styles.profilePFP} />
                     <div className={styles.profileName}>{currentUser.attributes.username}</div>
@@ -114,8 +114,6 @@ export default function Profile() {
                     <Blogs profile={true} />
 
                   </div>
-
-
                 </div>
                 <div className={styles.widgets}>
                   <Widgets />

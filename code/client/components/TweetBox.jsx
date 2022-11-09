@@ -1,7 +1,7 @@
 import { useState, useRef, useContext, useEffect } from 'react'
 import { Image, Matic } from '@web3uikit/icons'
 import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
-import { RiFileGifLine, RiBarChartHorizontalFill } from 'react-icons/ri'
+import { RiFileGifLine, RiBarChartHorizontalFill, RiCoinsLine } from 'react-icons/ri'
 import { IoMdCalendar } from 'react-icons/io'
 import { MdOutlineLocationOn } from 'react-icons/md'
 import { Icon, Twitter } from 'web3uikit'
@@ -9,6 +9,7 @@ import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
 import { useRouter } from 'next/router'
 import { TweetContext } from "../context/tweetApp";
 import Data from "../components/Data";
+import uploadImg from './ImageUpload'
 
 const style = {
   wrapper: `sticky border-b-2 border-b-indigo-500 flex flex-row pt-2 p-8 pb-0 rounded-2xl`,
@@ -33,6 +34,7 @@ function TweetBox() {
   const inputFile = useRef(null)
   const [file, setFile] = useState(null)
   const [selectedFile, setSelectedFile] = useState(null)
+  const [imageUrl, setImageUrl] = useState(null)
 
   const {
     checkIfWalletIsConnect,
@@ -81,20 +83,25 @@ function TweetBox() {
 
     if (file) {
       const data = file;
-      const fileobj = new Moralis.File(file.name, data);
-      await fileobj.saveIPFS();
-      newBlog.set("tweetImg", fileobj.ipfs());
+      let url = await uploadImg(data, setImageUrl);
+      if (!imageUrl) {
+        if (url) {
+          console.log("setting url");
+          newBlog.set("blogImg", url);
+          console.log("url set = " + url);
+        }else {
+          console.log("error")
+          return;
+        }
+      }
+      // console.log("filePath", imageUrl);
+      // newBlog.set("tweetImg", imageUrl);
     } else {
       newBlog.set("tweetImg", "");
     }
     await newBlog.save();
     router.push('/');
   }
-
-  const postToMatic = (event) => {
-    console.log("random");
-  }
-
 
   return (
     <div className={style.wrapper}>

@@ -21,6 +21,7 @@ const Blogs = ({ profile }) => {
     const { Moralis, account, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading } = useMoralis();
     const currentUser = Moralis.User.current();
     const router = useRouter();
+    const { asPath } = useRouter();
     // console.log(account)
     useEffect(() => {
         async function getblogs() {
@@ -49,7 +50,7 @@ const Blogs = ({ profile }) => {
     const incrementLikes = async (id) => {
         const Blogs = Moralis.Object.extend("Blogs");
         const query = new Moralis.Query(Blogs);
-        console.log(id);
+        // console.log(id);
         const blog = await query.get(id);
         blog.increment("Likes");
         await blog.save();
@@ -80,7 +81,7 @@ const Blogs = ({ profile }) => {
                                 <div className={styles.blog_text}> {blog.attributes.blogTxt} </div>
                             </Link>
 
-                            <img src={blog.attributes.tweetImg} alt="" />
+                            <img src={blog.attributes.blogImg} alt="" />
                         </div>
                         <div className={style.engage}>
                             <div className="flex flex-row gap-2">
@@ -95,7 +96,10 @@ const Blogs = ({ profile }) => {
                                     <p>{blog.attributes.Comments}</p>
                                 </div>
                                 <div className="flex items-center gap-1">
-                                    <BiTransfer className="w-5 h-5 text-green-400" />
+                                    <BiTransfer className="w-5 h-5 text-green-400" onClick={() => {
+                                        navigator.clipboard.writeText(asPath + 'blogs/'+ blog.id);
+                                        alert("Copied to clipboard - " + asPath + 'blogs/'+ blog.id);
+                                    }}/>
                                     <p>{blog.attributes.Shares}</p>
                                 </div>
                             </div>
