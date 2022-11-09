@@ -59,7 +59,7 @@ const Blogs = ({ profile }) => {
     return (
         <>
             {blogArr && blogArr.map((blog) => (
-                <div className={style.blogs}>
+                <div key={profile} className={style.blogs}>
                     <div>
                         <div className={style.profile}>
                             <div className="flex-shrink-0">
@@ -97,9 +97,9 @@ const Blogs = ({ profile }) => {
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <BiTransfer className="w-5 h-5 text-green-400" onClick={() => {
-                                        navigator.clipboard.writeText(asPath + 'blogs/'+ blog.id);
-                                        alert("Copied to clipboard - " + asPath + 'blogs/'+ blog.id);
-                                    }}/>
+                                        navigator.clipboard.writeText(asPath + 'blogs/' + blog.id);
+                                        alert("Copied to clipboard - " + asPath + 'blogs/' + blog.id);
+                                    }} />
                                     <p>{blog.attributes.Shares}</p>
                                 </div>
                             </div>

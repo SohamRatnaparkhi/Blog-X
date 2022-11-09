@@ -53,7 +53,7 @@ const BcBlogs = () => {
                             <div>
                                 {myTweet
                                     .map((el, i) => (
-                                        <div className={style.blogs}>
+                                        <div key={allAddress} className={style.blogs}>
                                             <div className={style.profile}>
                                                 <div className="flex-shrink-0">
                                                     <Image
@@ -70,7 +70,7 @@ const BcBlogs = () => {
                                                 </div>
                                             </div>
                                             <div className={styles.blog_text}>
-                                                    {el}
+                                                {el}
                                             </div>
                                             <div className={style.engage}>
                                                 <div className="flex items-center gap-1" onClick={() => {
