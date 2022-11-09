@@ -59,7 +59,7 @@ const Blogs = ({ profile }) => {
     return (
         <>
             {blogArr && blogArr.map((blog) => (
-                <div key={profile} className={style.blogs}>
+                <div key={blog._id} className={style.blogs}>
                     <div>
                         <div className={style.profile}>
                             <div className="flex-shrink-0">
