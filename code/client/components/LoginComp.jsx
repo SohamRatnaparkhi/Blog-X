@@ -5,9 +5,10 @@ import { ConnectButton } from './home/ConnectButton';
 
 const LoginComp = () => {
   return (
-    <div>
-      {/* <Icon fill="white" name="logo" width="64px" /> */}
-      <ConnectButton />
+    <div className='mt-20 ml-20'>
+      <div>
+        <ConnectButton />
+      </div>
     </div>
   )
 }

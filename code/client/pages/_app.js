@@ -11,13 +11,13 @@ const MyApp = ({ Component, pageProps }) => (
   >
     <TweetProvider>
       <NotificationProvider>
-        <div className="layout overflow-x-hidden pt-4 bg-[#192734]">
-          <div className="flex flex-row justify-between h-15 w-full overflow-x-hidden pb-2 gap-2">
+        <div className="layout overflow-x-hidden pt-4 bg-[#192734] overflow-x-hidden h-screen">
+          {/* <div className="flex flex-row justify-between h-15 w-full overflow-x-hidden pb-2 gap-2">
             <div className="basis-1/3">BlogX</div>
             <div className="basis-2/3">Search bar/publish</div>
             <div className="basis-1/3">profile</div>
-          </div>
-          <div className="pt-2 bg-[#0f172a]"></div>
+          </div> */}
+          {/* <div className="pt-2 bg-[#0f172a]"></div> */}
           <div className="">
             <Component {...pageProps} />
           </div>
