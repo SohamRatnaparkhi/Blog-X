@@ -52,8 +52,8 @@ const BcBlogs = () => {
                         <div className={style.blogText}>
                             <div>
                                 {myTweet
-                                    .map((el, i) => (
-                                        <div key={allAddress} className={style.blogs}>
+                                    .map((el, i, j) => (
+                                        <div key={j} className={style.blogs}>
                                             <div className={style.profile}>
                                                 <div className="flex-shrink-0">
                                                     <Image
