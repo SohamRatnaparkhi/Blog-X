@@ -50,7 +50,7 @@ const Blogs = ({ profile }) => {
     const incrementLikes = async (id) => {
         const Blogs = Moralis.Object.extend("Blogs");
         const query = new Moralis.Query(Blogs);
-        console.log(id);
+        // console.log(id);
         const blog = await query.get(id);
         blog.increment("Likes");
         await blog.save();
@@ -81,7 +81,7 @@ const Blogs = ({ profile }) => {
                                 <div className={styles.blog_text}> {blog.attributes.blogTxt} </div>
                             </Link>
 
-                            <img src={blog.attributes.tweetImg} alt="" />
+                            <img src={blog.attributes.blogImg} alt="" />
                         </div>
                         <div className={style.engage}>
                             <div className="flex flex-row gap-2">

@@ -47,7 +47,6 @@ const Settings = (props) => {
 
     const saveSettings = async () => {
         console.log("saving changed user details");
-        console.log(Moralis);
         const User = await Moralis.Object.extend("_User");
         const query = new Moralis.Query(User); // create a new query
         const userDetails = await query.first(); // get the first user
@@ -57,10 +56,17 @@ const Settings = (props) => {
         userDetails.set("pfp", selectedPFP);
 
         if (file) {
-            const data = file;
-            const fileData = await uploadImg(data, setBannerUrl);
-            console.log("url = " + bannerUrl);
-            userDetails.set("banner", bannerUrl);
+            const url = await uploadImg(file, setBannerUrl);
+            if (bannerUrl) {
+                userDetails.set("banner", url);
+            } else {
+                if (url) {
+                    userDetails.set("banner", url);
+                } else {
+                    console.log("error uploading banner");
+                }
+
+            }
         } else {
             userDetails.set("profileBanner", "abcd");
         }
