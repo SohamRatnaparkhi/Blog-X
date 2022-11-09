@@ -83,20 +83,25 @@ function TweetBox() {
 
     if (file) {
       const data = file;
-      const fileData = await uploadImg(data, setImageUrl);
-      console.log("filePath", imageUrl); 
-      newBlog.set("tweetImg", imageUrl);
+      let url = await uploadImg(data, setImageUrl);
+      if (!imageUrl) {
+        if (url) {
+          console.log("setting url");
+          newBlog.set("blogImg", url);
+          console.log("url set = " + url);
+        }else {
+          console.log("error")
+          return;
+        }
+      }
+      // console.log("filePath", imageUrl);
+      // newBlog.set("tweetImg", imageUrl);
     } else {
       newBlog.set("tweetImg", "");
     }
     await newBlog.save();
     router.push('/');
   }
-
-  const postToMatic = (event) => {
-    console.log("random");
-  }
-
 
   return (
     <div className={style.wrapper}>

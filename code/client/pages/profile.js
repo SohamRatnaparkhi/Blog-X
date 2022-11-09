@@ -114,8 +114,6 @@ export default function Profile() {
                     <Blogs profile={true} />
 
                   </div>
-
-
                 </div>
                 <div className={styles.widgets}>
                   <Widgets />

@@ -37,7 +37,7 @@ function Widgets() {
 
     useEffect(() => {
         if (isInitialized) {
-            console.log("Moralis initialized");
+            // console.log("Moralis initialized");
             setCurrentUser(Moralis.User.current());
         } else {
             router.push('/');
@@ -73,7 +73,7 @@ function Widgets() {
             amount: value,
             receiver: recieverId,
         }
-        console.log(options);
+        // console.log(options);
         if (!isWeb3Enabled) {
             await Moralis.enableWeb3();
         }
