@@ -4,7 +4,7 @@ import React from "react";
 import { Input } from "web3uikit";
 import { BsStars } from 'react-icons/bs'
 import { useState, useRef } from 'react'
-import Image from "Next/image";
+import Image from "next/image";
 import { defaultImgs } from "./home/defaultImgs";
 import { useMoralis } from "react-moralis";
 import { useRouter } from "next/router";
@@ -76,14 +76,14 @@ const Settings = (props) => {
         await userDetails.save();
         setDetailsSaved(true);
         router.push("/profile");
-        if(detailsSaved)
+        if (detailsSaved)
             alert("User details saved successfully");
     }
 
     return (
-        <>  
+        <>
             <div className={styles.header}> Settings
-                <BsStars key={props.stars}/> </div>
+                <BsStars key={props.stars} /> </div>
             <div className={styles.pa}>
                 <Input
                     label="Name"
