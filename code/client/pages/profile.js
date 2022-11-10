@@ -20,10 +20,10 @@ const styles = {
   banner: "w-full  h-220px bg-slate-900",
   pfpContainer: "w-full  h-1/3 bg-slate-900 border-b-2 border-sky-500 rounded-b-2xl mt-2",
   profilePFP: "w-32 h-32 rounded-full border-4 border-white object-cover bg-blend-multiply ml-2 -mt-10",
-  profileName: "w-1/4 text-2xl font-bold -ml-11 mt-2",
-  profileWallet: "w-1/4 text-sm font-light -ml-11 ",
+  profileName: "w-1/4 text-2xl font-bold ml-2 mt-2",
+  profileWallet: "w-1/4 text-sm font-light ml-2 ",
   profileEdit: " text-bold   border-2 border-sky-500 rounded-full p-3  m-2  float-right  transform -translate-y-10 -mt-20 mr-5",
-  profileBio: "w-1/4 ext-sm -ml-1 pt-2 pb-1",
+  profileBio: "w-1/4 ext-sm ml-1 pt-2 pb-1",
   profileTabs: " text-sm font-bold bg-slate-900 overflw-x-hidden overflow-y-auto",
   profileTab: "  h-full text-sm font-bold",
 };

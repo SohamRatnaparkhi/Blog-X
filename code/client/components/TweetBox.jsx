@@ -11,6 +11,7 @@ import { TweetContext } from "../context/tweetApp";
 import Data from "../components/Data";
 import uploadImg from './ImageUpload'
 
+
 const style = {
   wrapper: `sticky border-b-2 border-b-indigo-500 flex flex-row pt-2 p-8 pb-0 rounded-2xl`,
   tweetBoxLeft: `mr-4`,
@@ -89,7 +90,7 @@ function TweetBox() {
           console.log("setting url");
           newBlog.set("blogImg", url);
           console.log("url set = " + url);
-        }else {
+        } else {
           console.log("error")
           return;
         }
@@ -104,76 +105,81 @@ function TweetBox() {
   }
 
   return (
-    <div className={style.wrapper}>
-      <div className={style.tweetBoxLeft}>
-        <img src="https://pbs.twimg.com/profile_images/771597667403038720/Y57U3bvY_400x400.jpg"
-          alt="profile image"
-          className={style.profileImage}
-        />
-      </div>
-      <div className={style.tweetBoxRight}>
-        <form>
-          <textarea
-            onChange={e => setTweetMessage(e.target.value)}
-            value={tweetMessage}
-            placeholder="What's happening?"
-            className={style.inputField}
-            rows="15"
+    <div>
+      <div className={style.wrapper}>
+        <div className={style.tweetBoxLeft}>
+          <img src="/pfp2.png"
+            alt="profile image"
+            className={style.profileImage}
           />
-          {selectedFile && (
-            <img src={selectedFile} alt="selected file" className="w-full" />
-          )}
+        </div>
+        <div className={style.tweetBoxRight}>
+          <form>
+            <textarea
+              onChange={e => setTweetMessage(e.target.value)}
+              value={tweetMessage}
+              placeholder="What's happening?"
+              className={style.inputField}
+              rows="10"
+            />
+            {selectedFile && (
+              <img src={selectedFile} alt="selected file" className="w-full" />
+            )}
 
-          <div className={style.formLowerContainer}>
-            <div className={style.iconsContainer} onClick={onImageClick}>
-              <input
-                type="file"
-                name="file"
-                ref={inputFile}
-                onChange={changeHandler}
-                style={{ display: 'none' }}
-              />
-              <Image className={style.icon} />
+            <div className={style.formLowerContainer}>
+              <div className={style.iconsContainer} onClick={onImageClick}>
+                <input
+                  type="file"
+                  name="file"
+                  ref={inputFile}
+                  onChange={changeHandler}
+                  style={{ display: 'none' }}
+                />
+                <Image className={style.icon} />
 
-              {/* These are icons for other features, will be used afterwards */}
-              {/* <RiFileGifLine className={style.icon} />
+                {/* These are icons for other features, will be used afterwards */}
+                {/* <RiFileGifLine className={style.icon} />
               <RiBarChartHorizontalFill className={style.icon} />
               <BsEmojiSmile className={style.icon} />
               <IoMdCalendar className={style.icon} />
               <MdOutlineLocationOn className={style.icon} /> */}
 
 
-            </div>
-            <div
-              // disabled={!tweetMessage}
-              onClick={saveBlog}
-              className={`${style.submitGeneral} ${tweetMessage ? style.activeSubmit : style.inactiveSubmit
-                }`}
-            >
-              Hit it!
-            </div>
+              </div>
+              <div
+                // disabled={!tweetMessage}
+                onClick={saveBlog}
+                className={`${style.submitGeneral} ${tweetMessage ? style.activeSubmit : style.inactiveSubmit
+                  }`}
+              >
+                Hit it!
+              </div>
 
-            <div
-              type='submit'
-              //disabled={!tweetMessage}
-              onClick={() => { tweets(tweetMessage); }}
-              className={`${style.submitmatic} ${tweetMessage ? style.activeSubmit : style.inactiveSubmit
-                }`}
-            >
-              <Matic fontSize='20px' />
-            </div>
-            <div>
-              <Data
-                allTweet={allTweet}
-                allAddress={allAddress}
-                myTweet={myTweet}
-              />
-            </div>
+              <div
+                type='submit'
+                //disabled={!tweetMessage}
+                onClick={() => { tweets(tweetMessage); }}
+                className={`${style.submitmatic} ${tweetMessage ? style.activeSubmit : style.inactiveSubmit
+                  }`}
+              >
+                <Matic fontSize='20px' />
+              </div>
+              <div>
+                <Data
+                  allTweet={allTweet}
+                  allAddress={allAddress}
+                  myTweet={myTweet}
+                />
+              </div>
 
-          </div>
-        </form >
+            </div>
+          </form >
+        </div >
       </div >
-    </div >
+      <div className='py-4 px-2 bg-[#fff3cd] text-black mt-8 mx-4 rounded-3xl'>
+        If you want to publish your blogs in decentralized network, then use the <b>Matic button</b> else use the <b>Hit it</b> button.
+      </div>
+    </div>
   )
 }
 

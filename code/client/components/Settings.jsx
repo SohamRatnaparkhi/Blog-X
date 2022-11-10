@@ -4,7 +4,7 @@ import React from "react";
 import { Input } from "web3uikit";
 import { BsStars } from 'react-icons/bs'
 import { useState, useRef } from 'react'
-import Image from "next/image";
+import Image from "next/image"; 
 import { defaultImgs } from "./home/defaultImgs";
 import { useMoralis } from "react-moralis";
 import { useRouter } from "next/router";
