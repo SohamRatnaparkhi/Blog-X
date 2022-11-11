@@ -93,7 +93,7 @@ const Blogs = ({ profile }) => {
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <MessageCircle className="w-5 h-5 text-blue-500" />
-                                    <p>{blog.attributes.Comments}</p>
+                                    <p>{blog && blog.attributes.BlogCommentsList ? blog.attributes.BlogCommentsList.length : 0}</p>
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <BiTransfer className="w-5 h-5 text-green-400" onClick={() => {
