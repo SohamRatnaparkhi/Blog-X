@@ -100,23 +100,40 @@ const Blogs = ({ profile }) => {
                     </div>
                   </Link>
 
-                  <img src={blog.attributes.blogImg} alt="" />
-                </div>
-                <div className={style.engage}>
-                  <div className="flex flex-row gap-2">
-                    <div className="flex items-center gap-1">
-                      <Star
-                        className="w-5 h-5 text-yellow-400"
-                        onClick={() => {
-                          incrementLikes(blog.id);
-                        }}
-                      />
-                      <p>{blog.attributes.Likes}</p>
-                      <p>{blog.attributes.objectId}</p>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <MessageCircle className="w-5 h-5 text-blue-500" />
-                      <p>{blog.attributes.Comments}</p>
+
+                            <img src={blog.attributes.blogImg} alt="" />
+                        </div>
+                        <div className={style.engage}>
+                            <div className="flex flex-row gap-2">
+                                <div className="flex items-center gap-1">
+                                    <Star className="w-5 h-5 text-yellow-400"
+                                        onClick={() => { incrementLikes(blog.id); }} />
+                                    <p>{blog.attributes.Likes}</p>
+                                    <p>{blog.attributes.objectId}</p>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <MessageCircle className="w-5 h-5 text-blue-500" />
+                                    <p>{blog && blog.attributes.BlogCommentsList ? blog.attributes.BlogCommentsList.length : 0}</p>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <BiTransfer className="w-5 h-5 text-green-400" onClick={() => {
+                                        navigator.clipboard.writeText(asPath + 'blogs/' + blog.id);
+                                        alert("Copied to clipboard - " + asPath + 'blogs/' + blog.id);
+                                    }} />
+                                    <p>{blog.attributes.Shares}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-1" onClick={() => {
+                                navigator.clipboard.writeText(blog.attributes.UserAccount);
+                                alert("Copied to clipboard!");
+                            }}>
+                                <Copy />
+                            </div>
+                        </div>
+                        <div>
+                            <p>{blog.attributes.createdAt.toDateString()}</p>
+                        </div>
+
                     </div>
                     <div className="flex items-center gap-1">
                       <BiTransfer
