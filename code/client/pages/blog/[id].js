@@ -250,7 +250,10 @@ const Details = () => {
                   {b && b.attributes.BlogCommentsList
                     ? b.attributes.BlogCommentsList.map((comment, i) => {
                         return (
-                          <div className="flex flex-col gap-2 bg-white p-3 rounded-xl mt-4">
+                          <div
+                            key={i}
+                            className="flex flex-col gap-2 bg-white p-3 rounded-xl mt-4"
+                          >
                             <div className="flex-shrink-0 flex flex-row">
                               <Image
                                 className="rounded-full"
@@ -268,7 +271,7 @@ const Details = () => {
                                 {comment.ethAddress}
                               </div>
                             </div>
-                            <div key={i} className="text-black">
+                            <div className="text-black">
                               {comment.commentText}
                             </div>
                           </div>
