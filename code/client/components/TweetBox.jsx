@@ -1,16 +1,19 @@
-import { useState, useRef, useContext, useEffect } from 'react'
-import { Image, Matic } from '@web3uikit/icons'
-import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
-import { RiFileGifLine, RiBarChartHorizontalFill, RiCoinsLine } from 'react-icons/ri'
-import { IoMdCalendar } from 'react-icons/io'
-import { MdOutlineLocationOn } from 'react-icons/md'
-import { Icon, Twitter } from 'web3uikit'
+import { useState, useRef, useContext, useEffect } from "react";
+import { Image, Matic } from "@web3uikit/icons";
+import { BsCardImage, BsEmojiSmile } from "react-icons/bs";
+import {
+  RiFileGifLine,
+  RiBarChartHorizontalFill,
+  RiCoinsLine,
+} from "react-icons/ri";
+import { IoMdCalendar } from "react-icons/io";
+import { MdOutlineLocationOn } from "react-icons/md";
+import { Icon, Twitter } from "web3uikit";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { TweetContext } from "../context/tweetApp";
 import Data from "../components/Data";
-import uploadImg from './ImageUpload'
-
+import uploadImg from "./ImageUpload";
 
 const style = {
   wrapper: `sticky border-b-2 border-b-indigo-500 flex flex-row pt-2 p-8 pb-0 rounded-2xl`,
@@ -22,20 +25,20 @@ const style = {
   iconsContainer: `text-[#1d9bf0] flex flex-1 items-center`,
   icon: `mr-2 w-7 h-7 m-2 hover:bg-[#15202b] rounded-full p-1 cursor-pointer`,
   submitGeneral: `text-xl font-bold py-2 hover: cursor-pointer font-normal hover:font-bold text-center bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full my-2 mx-4 mt-3 pl-3`,
-  submitmatic: 'py-2 hover: cursor-pointer font-normal hover:font-bold text-center bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full my-2 mx-4 mt-3 pl-3',
+  submitmatic:
+    "py-2 hover: cursor-pointer font-normal hover:font-bold text-center bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full my-2 mx-4 mt-3 pl-3",
   inactiveSubmit: `bg-[#196195] text-[#95999e]`,
   activeSubmit: `bg-[#1d9bf0] text-white`,
-
-}
+};
 
 function TweetBox() {
   const { Moralis, isInitialized } = useMoralis();
   const router = useRouter();
-  const [tweetMessage, setTweetMessage] = useState()
-  const inputFile = useRef(null)
-  const [file, setFile] = useState(null)
-  const [selectedFile, setSelectedFile] = useState(null)
-  const [imageUrl, setImageUrl] = useState(null)
+  const [tweetMessage, setTweetMessage] = useState();
+  const inputFile = useRef(null);
+  const [file, setFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
 
   const {
     checkIfWalletIsConnect,
@@ -56,21 +59,20 @@ function TweetBox() {
 
   var user;
   const onImageClick = () => {
-    inputFile.current.click()
-  }
+    inputFile.current.click();
+  };
 
   try {
     user = Moralis.User.current();
-
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
   const changeHandler = (event) => {
-    const img = event.target.files[0]
-    setFile(img)
-    setSelectedFile(URL.createObjectURL(img))
-  }
+    const img = event.target.files[0];
+    setFile(img);
+    setSelectedFile(URL.createObjectURL(img));
+  };
 
   async function saveBlog() {
     const Blogs = Moralis.Object.extend("Blogs");
@@ -91,7 +93,7 @@ function TweetBox() {
           newBlog.set("blogImg", url);
           console.log("url set = " + url);
         } else {
-          console.log("error")
+          console.log("error");
           return;
         }
       }
@@ -101,14 +103,15 @@ function TweetBox() {
       newBlog.set("tweetImg", "");
     }
     await newBlog.save();
-    router.push('/');
+    router.push("/");
   }
 
   return (
     <div>
       <div className={style.wrapper}>
         <div className={style.tweetBoxLeft}>
-          <img src="/pfp2.png"
+          <img
+            src="/pfp2.png"
             alt="profile image"
             className={style.profileImage}
           />
@@ -116,7 +119,7 @@ function TweetBox() {
         <div className={style.tweetBoxRight}>
           <form>
             <textarea
-              onChange={e => setTweetMessage(e.target.value)}
+              onChange={(e) => setTweetMessage(e.target.value)}
               value={tweetMessage}
               placeholder="What's happening?"
               className={style.inputField}
@@ -133,7 +136,7 @@ function TweetBox() {
                   name="file"
                   ref={inputFile}
                   onChange={changeHandler}
-                  style={{ display: 'none' }}
+                  style={{ display: "none" }}
                 />
                 <Image className={style.icon} />
 
@@ -143,26 +146,28 @@ function TweetBox() {
               <BsEmojiSmile className={style.icon} />
               <IoMdCalendar className={style.icon} />
               <MdOutlineLocationOn className={style.icon} /> */}
-
-
               </div>
               <div
                 // disabled={!tweetMessage}
                 onClick={saveBlog}
-                className={`${style.submitGeneral} ${tweetMessage ? style.activeSubmit : style.inactiveSubmit
-                  }`}
+                className={`${style.submitGeneral} ${
+                  tweetMessage ? style.activeSubmit : style.inactiveSubmit
+                }`}
               >
                 Hit it!
               </div>
 
               <div
-                type='submit'
+                type="submit"
                 //disabled={!tweetMessage}
-                onClick={() => { tweets(tweetMessage); }}
-                className={`${style.submitmatic} ${tweetMessage ? style.activeSubmit : style.inactiveSubmit
-                  }`}
+                onClick={() => {
+                  tweets(tweetMessage);
+                }}
+                className={`${style.submitmatic} ${
+                  tweetMessage ? style.activeSubmit : style.inactiveSubmit
+                }`}
               >
-                <Matic fontSize='20px' />
+                <Matic fontSize="20px" />
               </div>
               <div>
                 <Data
@@ -171,16 +176,16 @@ function TweetBox() {
                   myTweet={myTweet}
                 />
               </div>
-
             </div>
-          </form >
-        </div >
-      </div >
-      <div className='py-4 px-2 bg-[#fff3cd] text-black mt-8 mx-4 rounded-3xl'>
-        If you want to publish your blogs in decentralized network, then use the <b>Matic button</b> else use the <b>Hit it</b> button.
+          </form>
+        </div>
+      </div>
+      <div className="py-4 px-2 bg-[#fff3cd] text-black mt-8 mx-4 rounded-3xl">
+        If you want to publish your blogs in decentralized network, then use the{" "}
+        <b>Matic button</b> else use the <b>Hit it</b> button.
       </div>
     </div>
-  )
+  );
 }
 
-export default TweetBox
+export default TweetBox;

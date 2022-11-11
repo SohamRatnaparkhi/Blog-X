@@ -2,8 +2,7 @@ export const news = [
   {
     category: "Blog-X is Live!",
     title: "Security at its fullest!",
-    image:
-      "/pfp3.png",
+    image: "/pfp3.png",
   },
   {
     category: "Databases • Trending",
