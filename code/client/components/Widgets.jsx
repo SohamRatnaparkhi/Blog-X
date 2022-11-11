@@ -1,5 +1,5 @@
 import { BiSearch } from "react-icons/bi";
-import { news } from "../assests/static";
+import { news } from "../Assests/static";
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
