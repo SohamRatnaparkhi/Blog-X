@@ -194,7 +194,7 @@ const Details = () => {
                 </div>
                 <div>Comments are</div>
                 <div>
-                  {b && b.attributes.BlogCommentsList ? b.attributes.BlogCommentsList.map((comment) => {
+                  {b && b.attributes.BlogCommentsList ? b.attributes.BlogCommentsList.map((comment,i) => {
                     return (
                       <div className="flex flex-col gap-2 bg-white p-3 rounded-xl mt-4">
                         <div className="flex-shrink-0 flex flex-row">
