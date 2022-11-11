@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import { MoralisProvider } from "react-moralis";
 import { NotificationProvider } from "web3uikit";
 import { TweetProvider } from "../context/tweetApp";
+import Navbar from "../components/Navbar";
 
 const MyApp = ({ Component, pageProps }) => (
   <MoralisProvider
@@ -21,7 +22,6 @@ const MyApp = ({ Component, pageProps }) => (
           <div className="">
             <Component {...pageProps} />
           </div>
-          
         </div>
       </NotificationProvider>
     </TweetProvider>

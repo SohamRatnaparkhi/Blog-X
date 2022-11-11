@@ -6,9 +6,9 @@ import { useMoralis } from "react-moralis";
 import Widgets from "../../components/Widgets";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import Image from 'next/image'
-import { Star, Copy, MessageCircle } from '@web3uikit/icons'
-import { BiTransfer } from 'react-icons/bi'
+import Image from "next/image";
+import { Star, Copy, MessageCircle } from "@web3uikit/icons";
+import { BiTransfer } from "react-icons/bi";
 import { useState } from "react";
 
 const styles = {
@@ -47,7 +47,7 @@ const Details = () => {
     if (isInitialized) {
       console.log("Moralis initialized");
     } else {
-      router.push('/');
+      router.push("/");
     }
   }, []);
 
@@ -112,6 +112,8 @@ const Details = () => {
           <div className={styles.side2}>
             <div className={styles.feed}>
 
+
+
               <br />
               <div className={styles.blogs}>
                 <div>
@@ -119,7 +121,13 @@ const Details = () => {
                     <div className="flex-shrink-0">
                       <Image
                         className="rounded-full"
-                        src={b && b.attributes.UserImage ? b.attributes.UserImage : "/pfp1.png"}
+
+                        src={
+                          b && b.attributes.UserImage
+                            ? blog.attributes.UserImage
+                            : "/pfp1.png"
+                        }
+
                         alt=""
                         width={40}
                         height={40}
@@ -127,6 +135,7 @@ const Details = () => {
                     </div>
                     <div className={styles.profilechars}>
                       <p className="font-bold">{b && b.attributes.UserName}</p>
+
                       <p className="text-gray-500">{b && b.attributes.UserAccount}</p>
                     </div>
                   </div>
@@ -134,12 +143,12 @@ const Details = () => {
 
                     <div className={styles.blogText}> {b && b.attributes.blogTxt} </div>
 
-
                     <img src={b && b.attributes.blogImg} alt="" />
                   </div>
                   <div className={styles.engage}>
                     <div className="flex flex-row gap-2">
                       <div className="flex items-center gap-1">
+
                         <Star className="w-5 h-5 text-yellow-400"
                           onClick={() => { incrementLikes(b.id); }} />
                         <p>{b && b.attributes.Likes}</p>
@@ -147,6 +156,7 @@ const Details = () => {
                       </div>
                       <div className="flex items-center gap-1">
                         <MessageCircle className="w-5 h-5 text-blue-500" />
+
                         <p>{b && b.attributes.Comments ? b.attributes.Comments.length : 0}</p>
                       </div>
                       <div className="flex items-center gap-1">
@@ -161,6 +171,7 @@ const Details = () => {
                       navigator.clipboard.writeText(b && b.attributes.UserAccount);
                       alert("Copied to clipboard!");
                     }}>
+
                       <Copy />
                     </div>
                   </div>
@@ -170,6 +181,7 @@ const Details = () => {
                 </div>
               </div>
               <div>
+
                 <br /><br />
                 <div>Comments Section</div>
                 <div className="flex flex-col gap-2">
@@ -178,10 +190,12 @@ const Details = () => {
                       <Image
                         className="rounded-full"
                         src={b && b.attributes.UserImage ? b.attributes.UserImage : "/pfp1.png"}
+
                         alt=""
                         width={40}
                         height={40}
                       />
+
 
 
                     </div>
@@ -216,6 +230,7 @@ const Details = () => {
                     )
                   }) : null}
                 </div>
+
 
               </div>
             </div>

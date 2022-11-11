@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const data = () => {
-    return (
-        <div>
+  return <div></div>;
+};
 
-        </div>
-    )
-}
-
-export default data
+export default data;
