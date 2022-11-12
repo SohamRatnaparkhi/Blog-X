@@ -6,9 +6,9 @@ import { useMoralis } from "react-moralis";
 import Widgets from "../../components/Widgets";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import Image from 'next/image'
-import { Star, Copy, MessageCircle } from '@web3uikit/icons'
-import { BiTransfer } from 'react-icons/bi'
+import Image from "next/image";
+import { Star, Copy, MessageCircle } from "@web3uikit/icons";
+import { BiTransfer } from "react-icons/bi";
 import { useState } from "react";
 
 const styles = {
@@ -47,7 +47,7 @@ const Details = () => {
     if (isInitialized) {
       console.log("Moralis initialized");
     } else {
-      router.push('/');
+      router.push("/");
     }
   }, []);
 
@@ -75,7 +75,7 @@ const Details = () => {
     query.equalTo("ethAddress", Moralis.User.current().attributes.ethAddress);
     const user = await query.first();
     return user;
-  }
+  };
 
   const refreshData = () => router.replace(router.asPath);
 
@@ -85,14 +85,20 @@ const Details = () => {
       const Blogs = Moralis.Object.extend("Blogs");
       const query = new Moralis.Query(Blogs);
       const blog = await query.get(id);
-      let commentList = blog.get("BlogCommentsList")
+      let commentList = blog.get("BlogCommentsList");
       if (!commentList) {
         commentList = [];
         blog.set("BlogCommentsList", commentList);
         await blog.save();
       }
       commentList = blog.get("BlogCommentsList");
-      commentList.push(new UserComment(User.attributes.name, comments, Moralis.User.current().attributes.ethAddress));
+      commentList.push(
+        new UserComment(
+          User.attributes.name,
+          comments,
+          Moralis.User.current().attributes.ethAddress
+        )
+      );
 
       await blog.save();
       // alert("Comment added successfully");
@@ -100,7 +106,7 @@ const Details = () => {
     } else {
       alert("Please enter a comment");
     }
-  }
+  };
 
   return (
     <div>
@@ -111,7 +117,6 @@ const Details = () => {
           </div>
           <div className={styles.side2}>
             <div className={styles.feed}>
-
               <br />
               <div className={styles.blogs}>
                 <div>
@@ -119,7 +124,11 @@ const Details = () => {
                     <div className="flex-shrink-0">
                       <Image
                         className="rounded-full"
-                        src={b && b.attributes.UserImage ? b.attributes.UserImage : "/pfp1.png"}
+                        src={
+                          b && b.attributes.UserImage
+                            ? blog.attributes.UserImage
+                            : "/pfp1.png"
+                        }
                         alt=""
                         width={40}
                         height={40}
@@ -127,40 +136,68 @@ const Details = () => {
                     </div>
                     <div className={styles.profilechars}>
                       <p className="font-bold">{b && b.attributes.UserName}</p>
-                      <p className="text-gray-500">{b && b.attributes.UserAccount}</p>
+
+                      <p className="text-gray-500">
+                        {b && b.attributes.UserAccount}
+                      </p>
                     </div>
                   </div>
                   <div className={styles.blogText}>
-
-                    <div className={styles.blogText}> {b && b.attributes.blogTxt} </div>
-
+                    <div className={styles.blogText}>
+                      {" "}
+                      {b && b.attributes.blogTxt}{" "}
+                    </div>
 
                     <img src={b && b.attributes.blogImg} alt="" />
                   </div>
                   <div className={styles.engage}>
                     <div className="flex flex-row gap-2">
                       <div className="flex items-center gap-1">
-                        <Star className="w-5 h-5 text-yellow-400"
-                          onClick={() => { incrementLikes(b.id); }} />
+                        <Star
+                          className="w-5 h-5 text-yellow-400"
+                          onClick={() => {
+                            incrementLikes(b.id);
+                          }}
+                        />
                         <p>{b && b.attributes.Likes}</p>
                         <p>{b && b.attributes.objectId}</p>
                       </div>
                       <div className="flex items-center gap-1">
                         <MessageCircle className="w-5 h-5 text-blue-500" />
-                        <p>{b && b.attributes.Comments ? b.attributes.Comments.length : 0}</p>
+
+                        <p>
+                          {b && b.attributes.Comments
+                            ? b.attributes.Comments.length
+                            : 0}
+                        </p>
                       </div>
                       <div className="flex items-center gap-1">
-                        <BiTransfer className="w-5 h-5 text-green-400" onClick={() => {
-                          navigator.clipboard.writeText(asPath + 'blogs/' + b.id);
-                          alert("Copied to clipboard - " + asPath + 'blogs/' + b.id);
-                        }} />
+                        <BiTransfer
+                          className="w-5 h-5 text-green-400"
+                          onClick={() => {
+                            navigator.clipboard.writeText(
+                              asPath + "blogs/" + b.id
+                            );
+                            alert(
+                              "Copied to clipboard - " +
+                                asPath +
+                                "blogs/" +
+                                b.id
+                            );
+                          }}
+                        />
                         <p>{b && b.attributes.Shares}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1" onClick={() => {
-                      navigator.clipboard.writeText(b && b.attributes.UserAccount);
-                      alert("Copied to clipboard!");
-                    }}>
+                    <div
+                      className="flex items-center gap-1"
+                      onClick={() => {
+                        navigator.clipboard.writeText(
+                          b && b.attributes.UserAccount
+                        );
+                        alert("Copied to clipboard!");
+                      }}
+                    >
                       <Copy />
                     </div>
                   </div>
@@ -170,53 +207,78 @@ const Details = () => {
                 </div>
               </div>
               <div>
-                <br /><br />
+                <br />
+                <br />
                 <div>Comments Section</div>
                 <div className="flex flex-col gap-2">
                   <div className="flex flex-row gap-2 bg-white p-3 rounded-xl">
                     <div className="flex-shrink-0">
                       <Image
                         className="rounded-full"
-                        src={b && b.attributes.UserImage ? b.attributes.UserImage : "/pfp1.png"}
+                        src={
+                          b && b.attributes.UserImage
+                            ? b.attributes.UserImage
+                            : "/pfp1.png"
+                        }
                         alt=""
                         width={40}
                         height={40}
                       />
-
-
                     </div>
-                    <textarea onChange={(e) => { setComments(e.target.value) }} className="w-full h-20 p-2 rounded-lg shadow-md" placeholder="Write a comment..."></textarea>
+                    <textarea
+                      onChange={(e) => {
+                        setComments(e.target.value);
+                      }}
+                      className="w-full h-20 p-2 rounded-lg shadow-md"
+                      placeholder="Write a comment..."
+                    ></textarea>
                   </div>
-                  <div onClick={() => { handleCommentSubmit(b && b.attributes.UserAccount, b && b.attributes.UserName) }}>submit</div>
+                  <div
+                    onClick={() => {
+                      handleCommentSubmit(
+                        b && b.attributes.UserAccount,
+                        b && b.attributes.UserName
+                      );
+                    }}
+                  >
+                    submit
+                  </div>
                 </div>
-                <div>
-
-                </div>
+                <div></div>
                 <div>Comments are</div>
                 <div>
-                  {b && b.attributes.BlogCommentsList ? b.attributes.BlogCommentsList.map((comment) => {
-                    return (
-                      <div className="flex flex-col gap-2 bg-white p-3 rounded-xl mt-4">
-                        <div className="flex-shrink-0 flex flex-row">
-                          <Image
-                            className="rounded-full"
-                            src={b && b.attributes.UserImage ? b.attributes.UserImage : "/pfp1.png"}
-                            alt=""
-                            width={40}
-                            height={40}
-                          />
-                          <div className="text-black">{comment.name}</div>
-                          <div className="text-black">{comment.ethAddress}</div>
-
-                        </div>
-                        <div className="text-black">
-                          {comment.commentText}
-                        </div>
-                      </div>
-                    )
-                  }) : null}
+                  {b && b.attributes.BlogCommentsList
+                    ? b.attributes.BlogCommentsList.map((comment, i) => {
+                        return (
+                          <div
+                            key={i}
+                            className="flex flex-col gap-2 bg-white p-3 rounded-xl mt-4"
+                          >
+                            <div className="flex-shrink-0 flex flex-row">
+                              <Image
+                                className="rounded-full"
+                                src={
+                                  b && b.attributes.UserImage
+                                    ? b.attributes.UserImage
+                                    : "/pfp1.png"
+                                }
+                                alt=""
+                                width={40}
+                                height={40}
+                              />
+                              <div className="text-black">{comment.name}</div>
+                              <div className="text-black">
+                                {comment.ethAddress}
+                              </div>
+                            </div>
+                            <div className="text-black">
+                              {comment.commentText}
+                            </div>
+                          </div>
+                        );
+                      })
+                    : null}
                 </div>
-
               </div>
             </div>
             <div className={styles.widgets}>

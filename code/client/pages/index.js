@@ -4,7 +4,8 @@ import HomeComp from "../components/HomeComp";
 import LoginComp from "../components/LoginComp";
 
 const styles = {
-  logout: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded-2xl mx-7 mt-10',
+  logout:
+    "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded-2xl mx-7 mt-10",
 };
 
 export default function Home() {
@@ -17,16 +18,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {
-          isAuthenticated ? (<HomeComp />) : (<LoginComp />)
-        }
-        <div className="logout"
+        {isAuthenticated ? <HomeComp /> : <LoginComp />}
+        <div
+          className="logout"
           onClick={() => {
             Moralis.User.logOut().then(() => {
               window.location.reload();
             });
-          }}>
-        </div>
+          }}
+        ></div>
       </main>
     </>
   );
