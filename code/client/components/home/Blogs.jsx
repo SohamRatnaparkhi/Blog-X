@@ -57,6 +57,7 @@ const Blogs = ({ profile }) => {
         await blog.save();
         refreshData();
     }
+    
     return (
         <>
             {blogArr && blogArr.map((blog) => (
@@ -104,7 +105,8 @@ const Blogs = ({ profile }) => {
                                     <p>{blog.attributes.Shares}</p>
                                 </div>
                                 <div className='flex items-center gap-1'>
-                                    <AiFillDelete className="w-5 h-5" onClick={() => {
+                                    
+                                    {profile && <AiFillDelete className="w-5 h-5" onClick={() => {
                                         const isDeletion = window.confirm("Are you sure you want to delete this blog?");
                                         if (isDeletion) {
                                             const Blogs = Moralis.Object.extend("Blogs");
@@ -118,7 +120,7 @@ const Blogs = ({ profile }) => {
                                                 });
                                             });
                                         }
-                                    }} />
+                                    }} /> }
                                 </div>
                             </div>
                             <div className="flex items-center gap-1" onClick={() => {
