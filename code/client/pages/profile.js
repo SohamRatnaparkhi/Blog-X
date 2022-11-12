@@ -15,7 +15,7 @@ const styles = {
     "flex justify-between h-screen w-full text-center  text-white gap-0.5",
   sides: "basis-1/4 bg-slate-900 h-full overflow-y-auto",
   side2: "basis-3/4 bg-slate-900 h-full flex flex-row overflow-x-hidden  ",
-  feed: "basis-2/3 bg-slate-800 h-full overflow-x-hidden overflow-y-auto",
+  feed: "basis-2/3 bg-slate-800 h-full overflow-x-hidden overflow-y-auto flex flex-col",
   widgets: "basis-1/3 bg-slate-900 h-full overflow-x-hidden overflow-y-auto",
   banner: "w-full  h-220px bg-slate-900",
   pfpContainer: "w-full  h-1/3 bg-slate-900 border-b-2 border-sky-500 rounded-b-2xl mt-2",
@@ -91,6 +91,7 @@ export default function Profile() {
 
               <div className={styles.side2}>
                 <div className={styles.feed}>
+                <div className="">
                   <img src={currentUser.attributes.banner ? currentUser.attributes.banner : defaultImgs[1]} className={styles.banner} />
                   <div className={styles.pfpContainer}>
                     <img src={defaultImgs[0]} className={styles.profilePFP} />
@@ -109,11 +110,14 @@ export default function Profile() {
                     <div className={styles.profileBio}> {
                       currentUser.attributes.bio ? currentUser.attributes.bio : "This is a bio"}</div>
                   </div>
+                </div>
+                <div>
                   <div className={styles.profileTabs}>
                     <div className={styles.profileTab}>Blogs</div>
                     <Blogs profile={true} />
 
                   </div>
+                </div>
                 </div>
                 <div className={styles.widgets}>
                   <Widgets />
