@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router';
 import { Star, Copy, MessageCircle } from '@web3uikit/icons'
 import { BiTransfer } from 'react-icons/bi'
+import { AiFillDelete } from 'react-icons/ai'
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
 import Link from 'next/link'
@@ -18,7 +19,7 @@ const style = {
 
 const Blogs = ({ profile }) => {
     const [blogArr, setblogArr] = useState();
-    const { Moralis, account, isAuthenticated, isWeb3Enabled, isWeb3EnableLoading } = useMoralis();
+    const { Moralis, account } = useMoralis();
     const currentUser = Moralis.User.current();
     const router = useRouter();
     const { asPath } = useRouter();
@@ -102,6 +103,23 @@ const Blogs = ({ profile }) => {
                                     }} />
                                     <p>{blog.attributes.Shares}</p>
                                 </div>
+                                <div className='flex items-center gap-1'>
+                                    <AiFillDelete className="w-5 h-5" onClick={() => {
+                                        const isDeletion = window.confirm("Are you sure you want to delete this blog?");
+                                        if (isDeletion) {
+                                            const Blogs = Moralis.Object.extend("Blogs");
+                                            const query = new Moralis.Query(Blogs);
+                                            query.get(blog.id).then((object) => {
+                                                object.destroy().then((response) => {
+                                                    console.log(response);
+                                                    window.location.reload();
+                                                }, (error) => {
+                                                    console.log(error);
+                                                });
+                                            });
+                                        }
+                                    }} />
+                                </div>
                             </div>
                             <div className="flex items-center gap-1" onClick={() => {
                                 navigator.clipboard.writeText(blog.attributes.UserAccount);
@@ -122,29 +140,3 @@ const Blogs = ({ profile }) => {
 }
 
 export default Blogs
-
-export async function getAllPostIds() {
-    // Instead of the file system,
-    // fetch post data from an external API endpoint
-    const res = await fetch('mongodb+srv://blogx-db:blogx@cluster0.c1ockvh.mongodb.net/parse?retryWrites=true&w=majority');
-    const posts = await res.json();
-    return posts.map((blog) => {
-        return {
-            params: {
-                id: blog.id,
-            },
-        };
-    });
-}
-
-export async function getPostData(id) {
-    // Instead of the file system,
-    // fetch post data from an external API endpoint
-    const res = await fetch(`https://.../posts/${id}`);
-    const post = await res.json();
-    // Combine the data with the id
-    return {
-        id,
-        ...post,
-    };
-}
