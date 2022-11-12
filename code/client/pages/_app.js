@@ -12,7 +12,7 @@ const MyApp = ({ Component, pageProps }) => (
   >
     <TweetProvider>
       <NotificationProvider>
-        <div className="layout overflow-x-hidden pt-4 bg-[#0e121e] overflow-x-hidden h-screen">
+        <div className="layout overflow-x-hidden bg-[#0e121e] overflow-x-hidden h-screen">
           {/* <div className="flex flex-row justify-between h-15 w-full overflow-x-hidden pb-2 gap-2">
             <div className="basis-1/3">BlogX</div>
             <div className="basis-2/3">Search bar/publish</div>

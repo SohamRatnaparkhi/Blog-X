@@ -41,11 +41,6 @@ const BcBlogs = () => {
   return (
     <div className="bg-slate-800 pb-4">
       <div className={style.wrapper}>
-        <div className={style.header}>
-          <div className={style.headerTitle}>Block Chain Blogs</div>
-          <BsStars />
-        </div>
-
         <div>
           <div>
             <div className={style.blogText}>

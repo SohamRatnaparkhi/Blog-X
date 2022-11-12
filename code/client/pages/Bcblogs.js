@@ -8,6 +8,7 @@ import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 import { MdVerified } from "react-icons/md";
 import Data from "../components/Data";
 import BcBlogs from "../components/BcBlogs";
+import Navbar from "../components/Navbar";
 
 const styles = {
   wrapper:
@@ -40,6 +41,7 @@ const Bcblogs = () => {
   }, []);
   return (
     <div>
+    <Navbar />
       <div className={styles.wrapper}>
         <div className={styles.columns}>
           <div className={styles.sides}>

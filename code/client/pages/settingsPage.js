@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "../components/Sidebar";
 import Widgets from "../components/Widgets";
 import Settings from "../components/Settings";
+import Navbar from "../components/Navbar";
 
 const styles = {
   wrapper:
@@ -18,6 +19,7 @@ const styles = {
 const HomeComp = (props) => {
   return (
     <div>
+    <Navbar />
       <div className={styles.wrapper}>
         <div className={styles.columns}>
           <div className={styles.sides}>
