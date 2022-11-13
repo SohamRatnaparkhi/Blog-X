@@ -64,7 +64,7 @@ const Sidebar = () => {
           Icon={Phone}
           isActive={Boolean(selected === "Contact Us")}
           setSelected={setSelected}
-          redirect="/"
+          redirect="https://github.com/blog-x-labs/blog-x/issues/new"
         />
         <hr />
       </div>
