@@ -28,7 +28,7 @@ const styles = {
     blogText: `text-md font-bold`,
 };
 
-const profileID = () => {
+const ProfileID = () => {
   const { isInitialized } = useMoralis();
   const { Moralis, account } = useMoralis();
   const router = useRouter();
@@ -86,4 +86,4 @@ const profileID = () => {
   );
 };
 
-export default profileID;
+export default ProfileID;
