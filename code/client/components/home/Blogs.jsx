@@ -72,7 +72,7 @@ const Blogs = ({ profile }) => {
                                 />
                             </div>
                             <div className={style.profilechars}>
-                                <p className="font-bold">{blog.attributes.UserName}</p>
+                                <Link href={'/profile/' + blog.attributes.UserAccount} key={blog.UserAccount}><p className="font-bold">{blog.attributes.UserName}</p></Link>
                                 <p className="text-gray-500">{blog.attributes.UserAccount.slice(0, 10) + "...." + blog.attributes.UserAccount.slice(-4)}</p>
                             </div>
                         </div>

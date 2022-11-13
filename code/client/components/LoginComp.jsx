@@ -17,6 +17,9 @@ const LoginComp = () => {
         <div className=''> 
           <ConnectButton />
         </div>
+        <div className="py-4 px-2 bg-[#fff3cd] text-black mt-8 mx-4 rounded-3xl">
+        You will require <b>Metamask</b>  to Log into our Platform.
+      </div>
       </div>
       <div className='basis-1/3 text-center'>
 

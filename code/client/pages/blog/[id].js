@@ -10,6 +10,7 @@ import Image from 'next/image'
 import { Star, Copy, MessageCircle } from '@web3uikit/icons'
 import { BiTransfer } from 'react-icons/bi'
 import { useState } from "react";
+import Link from 'next/link'
 
 const styles = {
   wrapper:
@@ -77,14 +78,14 @@ const Details = () => {
                             <div className="flex-shrink-0">
                                 <Image
                                     className="rounded-full"
-                                    src={b && b.attributes.UserImage ? blog.attributes.UserImage : "/pfp1.png"}
+                                    src={b && b.attributes.UserImage ? b && b.attributes.UserImage : "/pfp1.png"}
                                     alt=""
                                     width={40}
                                     height={40}
                                 />
                             </div>
                             <div className={styles.profilechars}>
-                                <p className="font-bold">{b && b.attributes.UserName}</p>
+                            <p className="font-bold">{b && b.attributes.UserName}</p>
                                 <p className="text-gray-500">{b && b.attributes.UserAccount }</p>
                             </div>
                         </div>
