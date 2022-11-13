@@ -28,6 +28,15 @@ const style = {
 
 }
 
+class UserComment {
+  constructor(name, commentText, ethAddress) {
+    this.name = name;
+    this.commentText = commentText;
+    this.ethAddress = ethAddress;  
+  }
+}
+
+
 function TweetBox() {
   const { Moralis, isInitialized } = useMoralis();
   const router = useRouter();
@@ -81,6 +90,7 @@ function TweetBox() {
     newBlog.set("UserAccount", user.attributes.ethAddress);
     newBlog.set("UserName", user.attributes.username);
     newBlog.set("Likes", 0);
+    newBlog.set("BlogCommentsList", new Array());
 
     if (file) {
       const data = file;
@@ -184,3 +194,4 @@ function TweetBox() {
 }
 
 export default TweetBox
+

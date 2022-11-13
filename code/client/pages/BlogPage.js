@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Feed from "../components/home/Feed";
 import Widgets from "../components/Widgets";
 import TweetBox from "../components/TweetBox";
+import Navbar from "../components/Navbar";
 
 const styles = {
   wrapper:
@@ -11,7 +12,7 @@ const styles = {
     "flex justify-between h-screen w-full text-center  text-white gap-0.5",
   sides: "basis-1/4 bg-slate-900 h-full overflow-y-auto",
   side2: "basis-3/4 bg-slate-900 h-full flex flex-row overflow-x-hidden  ",
-  feed: "basis-2/3 bg-slate-800 h-full overflow-x-hidden overflow-y-auto",
+  feed: "basis-2/3 bg-slate-800 h-full overflow-x-hidden overflow-y-auto px-4",
   widgets: "basis-1/3 bg-slate-900 h-full overflow-x-hidden overflow-y-auto",
 };
 
@@ -24,6 +25,7 @@ export default function BlogPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+      <Navbar />
         <div className={styles.wrapper}>
           <div className={styles.columns}>
             <div className={styles.sides}>
