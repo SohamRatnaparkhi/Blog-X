@@ -10,6 +10,7 @@ import Image from "next/image";
 import { Star, Copy, MessageCircle } from "@web3uikit/icons";
 import { BiTransfer } from "react-icons/bi";
 import { useState } from "react";
+import Link from 'next/link'
 
 const styles = {
   wrapper:
